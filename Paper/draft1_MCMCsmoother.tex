@@ -1,0 +1,399 @@
+\documentclass[journal]{IEEEtran}
+
+%% Packages
+\usepackage{cite}
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  \graphicspath{{../pdf/}{../jpeg/}}
+  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  \usepackage[dvips]{graphicx}
+  \graphicspath{{../eps/}}
+  \DeclareGraphicsExtensions{.eps}
+\fi
+\usepackage[cmex10]{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{mdwmath}
+\usepackage{mdwtab}
+\usepackage{eqparbox}
+\usepackage[font=footnotesize]{subfig}
+\usepackage{fixltx2e}
+\usepackage{stfloats}
+\usepackage{url}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\title{Faster particle smoothing using Markov chain Monte Carlo sampling}
+
+\author{Pete~Bunch,~\IEEEmembership{}
+        Simon~Godsill,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
+\thanks{P. Bunch and S. Godsill are with the Department
+of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
+\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+
+% The paper headers
+\markboth{IEEE Transaction in Signal Processing,~Vol.~1, No.~1, January~1901}%
+{Shell \MakeLowercase{\textit{et al.}}: Particle smoothing using Markov chain Monte Carlo sampling for backwards simulation}
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+
+
+\begin{IEEEkeywords}
+
+\end{IEEEkeywords}
+
+
+
+\section{Introduction}
+
+\IEEEPARstart{T}{he} objective of sequential Bayesian inference is the estimation of an unknown, time-varying quanitity from incomplete or inaccurate observations. This is commonly achieved through the use of probabilistic models for the evolution of the latent state and the measurement process.
+
+\begin{IEEEeqnarray}{rCl}
+x_{k} & \sim & p(x_{k}|x_{k-1}) \label{eq:state_proc}\\
+y_{k} & \sim & p(y_{k}|x_{k})   \label{eq:observ_proc}
+\end{IEEEeqnarray}
+
+Here, the random variable $x_k$ denotes the value of the latent state at the $k^{th}$ instant, and $y_k$ the value of the observation. A set of random variables will be written as $x_{1:k} = \{x_1, x_2, \dots, x_k \}$. The state evolution is assumed to be Markovian, i.e. $x_k$ depends only on the previous value, $x_{k-1}$.
+
+Commonly of interest are the problems of filtering and smoothing. Filtering is the inference of $p(x_k|y_{1:k})$, the distribution of the current state given all previous observations. Smoothing consists of two related tasks, the inference of $p(x_{1:K}|y_{1:K})$ (where $K$ is the number of time steps), the joint distribution of the entire state sequence given all the observations, and that of $p(x_{k}|y_{1:K})$, the marginal distribution of each state given all the observations. In this paper, we are concerned with the estimation of the joint smoothing distribution.
+
+Several problems are of interest; first, the inference of the \emph{filtering} distributions, $p(x_k|y_{1:k})$, an estimate of the current state given all previous observations; second, that of the \emph{smoothing} distribution, $p(x_{1:K}|y_{1:K})$ (where $K$ is the number of time steps), an estimate of the entire state sequence given all the observations; and third, that of the \emph{marginal smoothing} distributions, $p(x_{k}|y_{1:K})$ for each $k$. The estimation of these marginal smoothing distributions is not considered in this paper.
+
+In the case where the state and observation processes of equations~\ref{eq:state_proc}~and~\ref{eq:observ_proc} are linear and Gaussian, the filtering problem may be solved analytically using the Kalman filter \cite{Kalman1960}. For nonlinear or non-Gaussian models, tractable closed-form solutions are rare. In such cases, numerical approximations are often employed, including the particle filter algorithm, first introduced by \cite{Gordon1993}. (See \cite{Cappe2007,Doucet2009} for a thorough introduction.)
+
+In a particle filter, the filtering distribution is approximated by a set of weighted samples (or ``particles'') drawn from that distribution.
+
+\begin{IEEEeqnarray}{rCl}
+\hat{p}(x_{k}|y_{1:k}) & = & \sum_i w_k^{(i)} \delta_{x_k^{(i)}}(x_k)
+\end{IEEEeqnarray}
+
+Here, $\delta_{a}(x)$ indicates a discrete probability mass at the point $x = a$. $\hat{p}$ means an approximation to $p$.
+
+A similar story applies to the problem of smoothing. In the linear Gaussian case, the entire state sequence, $x_{1:K}$, may be estimated in closed-form using the a Rauch-Tung-Striebel (RTS) smoother \cite{Rauch1965}. This works by modifying the ordinary Kalman filter results in a backward processing pass through the observations. For nonlinear or non-Gaussian models, it is possible again to resort to numerical methods. Now, the particles of the approximation are drawn from the smoothing distribution.
+
+\begin{IEEEeqnarray}{rCl}
+\hat{p}(x_{1:K}|y_{1:K}) & = & \sum_i w_K^{(i)} \delta_{x_{1:K}^{(i)}}(x_{1:K})
+\end{IEEEeqnarray}
+
+Each particle is an entire realisation of the state process, with $K$ values corresponding to the state at each time step. The conventional method for generating these samples was described in \cite{Godsill2004}. In this paper a new method is presented for drawing samples from the smoothing distribution, using Markov chain Monte Carlo (MCMC). This novel procedure has computational advantages and greater flexibility over the previous methods.
+
+In section~\ref{}, we review briefly review the basic particle filter and smoother algorithms. The new MCMC-based smoothing method is presented in section~\ref{}, with supporting simulations in section~\ref{}.
+
+
+
+\section{Particle Filtering and Smoothing}
+
+\subsection{The Particle Filter}
+
+The particle filter is a recursive numerical algorithm for estimation of the filtering distribution. At the $k^{th}$ processing step, a particle estimate of the joint distribution over $x_{k-1}$ and $x_k$ is made by drawing samples from a proposal distribution.
+
+\begin{IEEEeqnarray}{rCl}
+\{ x_{k-1}^{(i)}, x_k^{(i)} \} & \sim & q(x_{x}|x_{k-1}) q(x_{k-1})
+\end{IEEEeqnarray}
+
+The $k-1$ state proposal distribution, $q(x_{k-1})$, is constructed from the particles of the filtering distribution from the previous time step. The choice of weights and sampling procedure here determines what from of ``resampling'' is to be used. Here we use arbitrary weights for generality.
+
+\begin{IEEEeqnarray}{rCl}
+q(x_{k-1}) & = & \sum_i v_{k-1}^{(i)} \delta_{x_{k-1}^{(i)}}(x_{k-1})
+\end{IEEEeqnarray}
+
+Note that the choice $v_{k-1}^{(i)} = w_{k-1}^{(i)}$ corresponds to ordinary resampling, and other choices of $v_{k-1}^{(i)}$ represent auxiliary sampling schemes \cite{Pitt1999}. For the least computational expense, the proposal distribution with weights $v_{k-1}^{(i)} = 1/N_P$ (where $N_p$ is the number of particles) can be ``sampled'' by simply keeping the set of particles generated in the last step, with no resampling. (See \cite{Cappe2007,Doucet2009} for further discussion of resampling.)
+
+Next, the particles are assigned an importance weight according to the ratio of the targeted joint distribution and the proposal.
+
+\begin{IEEEeqnarray}{rCl}
+w_{k}^{(i)} & =       & \frac{ p(x_{k-1}^{(i)}, x_k^{(i)}|y_{1:k}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) q(x_{k-1}^{(i)}) } \nonumber \\
+            & \propto & \frac{ p(y_k|x_k^{(i)}) p(x_k^{(i)}|x_{k-1}^{(i)}) p(x_{k-1}^{(i)}|y_{1:k-1}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) q(x_{k-1}^{(i)}) } \nonumber \\
+            & \approx & \frac{ p(y_k|x_k^{(i)}) p(x_k^{(i)}|x_{k-1}^{(i)}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) } \times \frac{w_{k-1}^{(i)}}{v_{k-1}^{(i)} }
+\end{IEEEeqnarray}
+
+Normalisation is enforced by scaling the weights so that they sum to 0. Finally, $x_{k-1}$ is marginalised from the distribution by simply discarding the values from each particles.
+
+\begin{algorithm}
+  \begin{algorithmic}
+  	\STATE Initialise particles from prior, $x_{0}^{(i)} \sim p(x_{0})$.
+  	\FOR{$k = 1 \dots K$}
+  		\FOR{$i = 1 \dots N_P$}
+  			\STATE Sample $\{ x_{k-1}^{(i)}, x_k^{(i)} \} \sim \sum_j v_{k-1}^{(j)} q(x_k|x_{k-1}^{(j)})$.
+  			\STATE Weight $w_{k}^{(i)} \propto \frac{ p(y_k|x_k^{(i)}) p(x_k^{(i)}|x_{k-1}^{(i)}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) } \times \frac{w_{k-1}^{(i)}}{v_{k-1}^{(i)} }$.
+  			\STATE Discard $x_{k-1}^{(i)}$.
+  		\ENDFOR
+  	  \STATE Scale weights so that $\sum_i w_{k}^{(i)} = 1$.
+  	\ENDFOR
+  \end{algorithmic}
+  \caption{Particle filter algorithm}
+  \label{alg:PF}
+\end{algorithm}
+
+
+\subsection{Existing Algorithms for Particle Smoothing }
+
+The particle filter generates a numerical approximation to each filtering distribution, $p(x_k|y_{1:k})$ by simulating a set of samples from each. A similar sampling-based method may be used to estimate the smoothing distribution.
+
+The most basic particle smoother was presented in \cite{Kitigawa1996}, and is a trivial extension of the particle filter. Rather than marginalising the previous states from each particle, these past values are stored as well. Thus, at each step the algorithm generates an approximation to $p(x_{1:k}|y_{1:k})$. The output from the final processing step is an approximation to the desired smoothing distribution.
+
+The weakness of the Kitigawa smoother (KS) is degeneracy. Every time the particles are resampled, those with low weights do not appear in the approximation at the next step, while those with high weights appear multiple times. The result is that many, or even all, particles will have the same values at early time steps. This effect is illustrated in figure~\ref{} in section~\ref{}. If the objective is only to produce a single point estimate then this might be sufficient, but to characterise the complete smoothing distribution the approximation must be rejeuvenated.
+
+\begin{algorithm}
+  \begin{algorithmic}
+  	\STATE Initialise particles from prior, $x_{0}^{(i)} \sim p(x_{0})$.
+  	\FOR{$k = 1 \dots K$}
+  		\FOR{$i = 1 \dots N_P$}
+  			\STATE Sample $\{ x_{1:k-1}^{(i)}, x_k^{(i)} \} \sim \sum_j v_{k-1}^{(j)} q(x_k|x_{k-1}^{(j)})$.
+  			\STATE Weight $w_{k}^{(i)} \propto \frac{ p(y_k|x_k^{(i)}) p(x_k^{(i)}|x_{k-1}^{(i)}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) } \times \frac{w_{k-1}^{(i)}}{v_{k-1}^{(i)} }$.
+  		\ENDFOR
+  	  \STATE Scale weights so that $\sum_i w_{k}^{(i)} = 1$.
+  	\ENDFOR
+  \end{algorithmic}
+  \caption{Kitigawa smoother algorithm}
+  \label{alg:PF}
+\end{algorithm}
+
+An improved particle smoothing algorithm was presented in \cite{Godsill2004}. 
+
+
+
+\newpage
+
+\begin{itemize}
+	\item Kitigawa smoother
+	\item Doucet re-weighting smoother
+	\item Godsill re-sampling smoother
+	\item Complexities
+	\item Algorithms
+\end{itemize}
+
+
+
+\section{New MCMC Particle Smoother}
+
+\begin{itemize}
+	\item Motivate - high complexity, low speed of other smoothers
+	\item MCMC avoids need to calculate all weights at each step
+	\item maths
+	\item algorithm
+	\item complexity
+\end{itemize}
+
+\subsection{Performance Control}
+
+\begin{itemize}
+	\item The effect of varying M, the number of MH steps
+	\item Situations where the new smoother works well/poorly.
+	\item Backward sampling weight ESS.
+\end{itemize}
+
+
+
+\section{Simulations}
+
+
+
+
+
+%%%% Template bits
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command, the
+% \label for the overall figure must come after \caption.
+% \hfil must be used as a separator to get equal spacing.
+% The subfigure.sty package works much the same way, except \subfigure is
+% used instead of \subfloat.
+%
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals use top floats exclusively.
+% Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
+% floats. This can be corrected via the \fnbelowfloat command of the
+% stfloats package.
+
+
+
+\section{Conclusion}
+The conclusion goes here.
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+\appendices
+\section{Proof of the First Zonklar Equation}
+Appendix one text goes here.
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+\section{}
+Appendix two text goes here.
+
+
+% use section* for acknowledgement
+\section*{Acknowledgment}
+
+
+The authors would like to thank...
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+\bibliography{D:/pb404/Dropbox/PhD/OTbib}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}{Pete Bunch}
+Biography text here.
+\end{IEEEbiography}
+
+% if you will not have a photo at all:
+\begin{IEEEbiographynophoto}{Simon Godsill}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+
