@@ -9,40 +9,29 @@ test_flag = 2;
 num_seed = 10;
 set_parameters;
 
+% Set test-specific parameters
+if test_flag == 1
+    params.bng_var = (pi/720)^2;
+    params.rng_var = 0.1;
+elseif test_flag == 2
+    params.bng_var = (pi/180)^2;
+    params.rng_var = 10;
+end
+
+% Number of smoothing algorithms
+NA = 13; % filter, kitigawa, godsill, 5 MCMC-resampling, 5 MCMC-Fearnhead
+
 % Results arrays
-bs_times = zeros(num_seed,1);
-mcmc1_times = zeros(num_seed,1);
-mcmc3_times = zeros(num_seed,1);
-mcmc10_times = zeros(num_seed,1);
-mcmc30_times = zeros(num_seed,1);
-mcmc100_times = zeros(num_seed,1);
-
-kiti_unique_pts = zeros(num_seed,params.N);
-bs_unique_pts = zeros(num_seed,params.N);
-mcmc1_unique_pts = zeros(num_seed,params.N);
-mcmc3_unique_pts = zeros(num_seed,params.N);
-mcmc10_unique_pts = zeros(num_seed,params.N);
-mcmc30_unique_pts = zeros(num_seed,params.N);
-mcmc100_unique_pts = zeros(num_seed,params.N);
-
-filt_mean_pos_rmse = zeros(num_seed,1);
-kiti_mean_pos_rmse = zeros(num_seed,1);
-bs_mean_pos_rmse = zeros(num_seed,1);
-mcmc1_mean_pos_rmse = zeros(num_seed,1);
-mcmc3_mean_pos_rmse = zeros(num_seed,1);
-mcmc10_mean_pos_rmse = zeros(num_seed,1);
-mcmc30_mean_pos_rmse = zeros(num_seed,1);
-mcmc100_mean_pos_rmse = zeros(num_seed,1);
-
-filt_mean_vel_rmse = zeros(num_seed,1);
-kiti_mean_vel_rmse = zeros(num_seed,1);
-bs_mean_vel_rmse = zeros(num_seed,1);
-mcmc1_mean_vel_rmse = zeros(num_seed,1);
-mcmc3_mean_vel_rmse = zeros(num_seed,1);
-mcmc10_mean_vel_rmse = zeros(num_seed,1);
-mcmc30_mean_vel_rmse = zeros(num_seed,1);
-mcmc100_mean_vel_rmse = zeros(num_seed,1);
-
+times = cell(NA,1);
+unique_pts = cell(NA,1);
+mean_pos_rmse = cell(NA,1);
+mean_vel_rmse = cell(NA,1);
+for alg = 1:NA
+    times{alg} = zeros(num_seed,1);
+    unique_pts{alg} = zeros(num_seed,params.N);
+    mean_pos_rmse{alg} = zeros(num_seed,1);
+    mean_vel_rmse{alg} = zeros(num_seed,1);
+end
 
 % Loop through random seend
 for rs = 1:num_seed;
@@ -65,134 +54,98 @@ for rs = 1:num_seed;
     parents = systematic_resample(wts_array{end});
     kiti_pts = pts_array{end}(parents);
     
-    % Analyse and store
+    % Analyse
     filt_rmse = RMSE(x, filter_pts);
     
     kiti_rmse = RMSE(x, kiti_pts);
     [kiti_Nup, kiti_Nuh] = count_unique_particles(kiti_pts);
     
-    kiti_unique_pts(rs,:) = kiti_Nup;
-    filt_mean_pos_rmse = filt_rmse.mean_pos;
-    kiti_mean_pos_rmse = kiti_rmse.mean_pos;
-    filt_mean_vel_rmse = filt_rmse.mean_vel;
-    kiti_mean_vel_rmse = kiti_rmse.mean_vel;
+    %Store
+    mean_pos_rmse{1}(rs) = filt_rmse.mean_pos;
+    mean_vel_rmse{1}(rs) = filt_rmse.mean_vel;
+    unique_pts{2}(rs,:) = kiti_Nup;
+    mean_pos_rmse{2}(rs) = kiti_rmse.mean_pos;
+    mean_vel_rmse{2}(rs) = kiti_rmse.mean_vel;
     
-    %% Run an ordinary smoother
-    tic;
-    bs_smooth_pts = backard_sampling_smoother( params.S, t, pts_array, wts_array, @tracking_trans );
-    bs_time = toc;
+    %% Run smoothers
     
-    % Analyse and store
-    bs_rmse = RMSE(x, bs_smooth_pts);
-    [bs_Nup, bs_Nuh] = count_unique_particles(bs_smooth_pts);
-    
-    bs_times(rs) = bs_time;
-    bs_unique_pts(rs,:) = bs_Nup;
-    bs_mean_pos_rmse = bs_rmse.mean_pos;
-    bs_mean_vel_rmse = bs_rmse.mean_vel;
-    
-    %% Run the MCMC smoothers
-    
-    M = 1;
-    % Run
-    tic;
-    mcmc_smooth_pts = mcmc_smoother( params.S, M, t, pts_array, wts_array, @tracking_trans );
-    mcmc_time = toc;
-    % Analyse and store
-    mcmc_rmse = RMSE(x, mcmc_smooth_pts);
-    [mcmc_Nup, mcmc_Nuh] = count_unique_particles(mcmc_smooth_pts);
-    mcmc1_times(rs) = mcmc_time;
-    mcmc1_unique_pts(rs,:) = mcmc_Nup;
-    mcmc1_mean_pos_rmse = mcmc_rmse.mean_pos;
-    mcmc1_mean_vel_rmse = mcmc_rmse.mean_vel;
-    
-    M = 3;
-    % Run
-    tic;
-    mcmc_smooth_pts = mcmc_smoother( params.S, M, t, pts_array, wts_array, @tracking_trans );
-    mcmc_time = toc;
-    % Analyse and store
-    mcmc_rmse = RMSE(x, mcmc_smooth_pts);
-    [mcmc_Nup, mcmc_Nuh] = count_unique_particles(mcmc_smooth_pts);
-    mcmc3_times(rs) = mcmc_time;
-    mcmc3_unique_pts(rs,:) = mcmc_Nup;
-    mcmc3_mean_pos_rmse = mcmc_rmse.mean_pos;
-    mcmc3_mean_vel_rmse = mcmc_rmse.mean_vel;
-    
-    M = 10;
-    % Run
-    tic;
-    mcmc_smooth_pts = mcmc_smoother( params.S, M, t, pts_array, wts_array, @tracking_trans );
-    mcmc_time = toc;
-    % Analyse and store
-    mcmc_rmse = RMSE(x, mcmc_smooth_pts);
-    [mcmc_Nup, mcmc_Nuh] = count_unique_particles(mcmc_smooth_pts);
-    mcmc10_times(rs) = mcmc_time;
-    mcmc10_unique_pts(rs,:) = mcmc_Nup;
-    mcmc10_mean_pos_rmse = mcmc_rmse.mean_pos;
-    mcmc10_mean_vel_rmse = mcmc_rmse.mean_vel;
-    
-    M = 30;
-    % Run
-    tic;
-    mcmc_smooth_pts = mcmc_smoother( params.S, M, t, pts_array, wts_array, @tracking_trans );
-    mcmc_time = toc;
-    % Analyse and store
-    mcmc_rmse = RMSE(x, mcmc_smooth_pts);
-    [mcmc_Nup, mcmc_Nuh] = count_unique_particles(mcmc_smooth_pts);
-    mcmc30_times(rs) = mcmc_time;
-    mcmc30_unique_pts(rs,:) = mcmc_Nup;
-    mcmc30_mean_pos_rmse = mcmc_rmse.mean_pos;
-    mcmc30_mean_vel_rmse = mcmc_rmse.mean_vel;
-    
-    M = 100;
-    % Run
-    tic;
-    mcmc_smooth_pts = mcmc_smoother( params.S, M, t, pts_array, wts_array, @tracking_trans );
-    mcmc_time = toc;
-    % Analyse and store
-    mcmc_rmse = RMSE(x, mcmc_smooth_pts);
-    [mcmc_Nup, mcmc_Nuh] = count_unique_particles(mcmc_smooth_pts);
-    mcmc100_times(rs) = mcmc_time;
-    mcmc100_unique_pts(rs,:) = mcmc_Nup;
-    mcmc100_mean_pos_rmse = mcmc_rmse.mean_pos;
-    mcmc100_mean_vel_rmse = mcmc_rmse.mean_vel;
+    for alg = 3:NA
+        
+        % Reset random seed for each smoother
+        s = RandStream('mt19937ar', 'seed', 0);
+        RandStream.setDefaultStream(s);
+        
+        switch alg
+            case 3
+                
+                % Run an ordinary smoother
+                tic;
+                smooth_pts = backard_sampling_smoother( params.S, t, pts_array, wts_array, @tracking_trans );
+                time = toc;
+                
+            case {4,5,6,7,8}
+                
+                if alg == 4
+                    M = 1;
+                elseif alg == 5
+                    M = 3;
+                elseif alg == 6
+                    M = 10;
+                elseif alg == 7
+                    M = 30;
+                elseif alg == 8
+                    M = 100;
+                else
+                    error('Invalid branch')
+                end
+
+                tic;
+                smooth_pts = mcmc_smoother( params.S, M, t, pts_array, wts_array, @tracking_trans );
+                time = toc;
+                
+            case {9,10,11,12,13}
+                
+                if alg == 9
+                    M = 1;
+                elseif alg == 10
+                    M = 3;
+                elseif alg == 11
+                    M = 10;
+                elseif alg == 12
+                    M = 30;
+                elseif alg == 13
+                    M = 100;
+                else
+                    error('Invalid branch')
+                end
+                
+                tic;
+                smooth_pts = mcmc_newstate_smoother( params.S, M, t, pts_array, wts_array, y, @tracking_trans, @tracking_obs, @tracking_bidirec_ppsl );
+                time = toc;
+                
+        end
+        
+        % Analyse and store
+        rmse = RMSE(x, smooth_pts);
+        [Nup, Nuh] = count_unique_particles(smooth_pts);
+        
+        % Store
+        times{alg}(rs) = time;
+        unique_pts{alg}(rs,:) = Nup;
+        mean_pos_rmse{alg}(rs) = rmse.mean_pos;
+        mean_vel_rmse{alg}(rs) = rmse.mean_vel;
+        
+    end
     
 end
 
 % Average and store
-
-results.filt.mean_pos_rmse = mean(filt_mean_pos_rmse, 1);
-results.kiti.mean_pos_rmse = mean(kiti_mean_pos_rmse, 1);
-results.bs.mean_pos_rmse = mean(bs_mean_pos_rmse, 1);
-results.mcmc1.mean_pos_rmse = mean(mcmc1_mean_pos_rmse, 1);
-results.mcmc3.mean_pos_rmse = mean(mcmc3_mean_pos_rmse, 1);
-results.mcmc10.mean_pos_rmse = mean(mcmc10_mean_pos_rmse, 1);
-results.mcmc30.mean_pos_rmse = mean(mcmc30_mean_pos_rmse, 1);
-results.mcmc100.mean_pos_rmse = mean(mcmc100_mean_pos_rmse, 1);
-
-results.filt.mean_vel_rmse = mean(filt_mean_vel_rmse, 1);
-results.kiti.mean_vel_rmse = mean(kiti_mean_vel_rmse, 1);
-results.bs.mean_vel_rmse = mean(bs_mean_vel_rmse, 1);
-results.mcmc1.mean_vel_rmse = mean(mcmc1_mean_vel_rmse, 1);
-results.mcmc3.mean_vel_rmse = mean(mcmc3_mean_vel_rmse, 1);
-results.mcmc10.mean_vel_rmse = mean(mcmc10_mean_vel_rmse, 1);
-results.mcmc30.mean_vel_rmse = mean(mcmc30_mean_vel_rmse, 1);
-results.mcmc100.mean_vel_rmse = mean(mcmc100_mean_vel_rmse, 1);
-
-results.kiti.unique_pts = mean(kiti_unique_pts, 1);
-results.bs.unique_pts = mean(bs_unique_pts, 1);
-results.mcmc1.unique_pts = mean(mcmc1_unique_pts, 1);
-results.mcmc3.unique_pts = mean(mcmc3_unique_pts, 1);
-results.mcmc10.unique_pts = mean(mcmc10_unique_pts, 1);
-results.mcmc30.unique_pts = mean(mcmc30_unique_pts, 1);
-results.mcmc100.unique_pts = mean(mcmc100_unique_pts, 1);
-
-results.bs.time = mean(bs_times);
-results.mcmc1.time = mean(mcmc1_times);
-results.mcmc3.time = mean(mcmc3_times);
-results.mcmc10.time = mean(mcmc10_times);
-results.mcmc30.time = mean(mcmc30_times);
-results.mcmc100.time = mean(mcmc100_times);
+results = cell(NA,1);
+for alg = 1:NA
+    results{alg}.mean_pos_rmse = mean(mean_pos_rmse{alg});
+    results{alg}.mean_vel_rmse = mean(mean_vel_rmse{alg});
+    results{alg}.unique_pts = mean(unique_pts{alg}, 1);
+    results{alg}.times = mean(times{alg});
+end
 
 save(['smoother_test' num2str(test_flag) '.mat'], 'results', 'params');

@@ -4,7 +4,7 @@ function [ smooth_pts ] = mcmc_smoother( S, M, times, pts_array, wts_array, h_tr
 %
 %
 
-fprintf(1, '\n\n*** Running MCMC-based backward sampling smoother. ***\n');
+fprintf(1, '\n\n*** Running MCMC-based backward resampling smoother. ***\n');
 
 % Initialise variables
 K = size(pts_array,1);
