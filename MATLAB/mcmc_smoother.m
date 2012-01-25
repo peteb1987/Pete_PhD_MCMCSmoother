@@ -41,7 +41,7 @@ for ii = 1:S
             
             % Propose a new particle
 %             ind = randsample(Np, 1);
-            ind = randsample(Np, 1, true, exp(wts_array{kk}));
+            ind = sample_weights(exp(wts_array{kk}));
             
             % Calculate probability
             [~, new_trans_prb] = feval(h_trans, dt, pts_array{kk}{ind}(:,kk), smooth_pts{ii}(:,kk+1) );

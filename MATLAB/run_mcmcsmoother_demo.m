@@ -17,9 +17,11 @@ set_parameters;
 % Plot it
 xmax = max(max(abs(x(1:2,:))))+5;
 figure(1); hold on; xlim([-xmax, xmax]); ylim([-xmax, xmax]);
-plot(x(1,:), x(2,:), 'b')
+plot(x(1,:), x(2,:), 'b', 'linewidth', 3);
 [x_obs, y_obs] = pol2cart(y(1,:), y(2,:)); plot(x_obs, y_obs, 'r');
-figure(2); plot(t, y);
+plot(0, 0, 'xk', 'markersize', 10)
+legend('Target Position', 'Observations')
+% figure(2); plot(t, y);
 
 %% Run a PF
 init_pts = num2cell(mvnrnd(params.x0', params.prior_var, params.Np)', 1);

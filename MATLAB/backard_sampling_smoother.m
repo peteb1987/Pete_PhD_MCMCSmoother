@@ -48,7 +48,7 @@ for ii = 1:S
         
         % Sample
 %         fprintf(1, '     ESS in frame %u: %f\n', kk, ESS(wts));
-        ind = randsample(length(wts), 1, true, exp(wts));
+        ind = sample_weights(exp(wts));
         
         % Update trajectory
         smooth_pts{ii} = [pts_array{kk}{ind}(:,1:kk) smooth_pts{ii}(:,kk+1:end)];

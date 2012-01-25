@@ -20,7 +20,7 @@ H = [-m(2)/(m(1)^2+m(2)^2),    m(1)/(m(1)^2+m(2)^2),     0, 0;
 if (nargin < 8)||isempty(x)
     x = mvnrnd(m', P)';
 end
-ppsl_prb = log(mvnpdf(x', m', P));
+ppsl_prb = fast_log_mvnpdf(x', m', P);
 
 end
 

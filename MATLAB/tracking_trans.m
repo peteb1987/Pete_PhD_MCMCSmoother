@@ -8,7 +8,7 @@ global params;
 x_mn = A*last_x;
 
 if ~isempty(x)
-    trans_prb = log(mvnpdf(x', x_mn', Q));
+    trans_prb = fast_log_mvnpdf(x', x_mn', Q);
 end
 
 end

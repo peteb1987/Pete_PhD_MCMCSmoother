@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  24 JAN 2012 15:52
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  25 JAN 2012 18:10
 entering extended mode
 **D:/pb404/MCMCSmoother/Paper/draft3_MCMCsmoother.tex
 (D:/pb404/MCMCSmoother/Paper/draft3_MCMCsmoother.tex
@@ -357,76 +357,119 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ]
 
-LaTeX Warning: Reference `' on page 2 undefined on input line 148.
+LaTeX Warning: Reference `' on page 2 undefined on input line 147.
 
 
-LaTeX Warning: Reference `' on page 2 undefined on input line 148.
+LaTeX Warning: Reference `' on page 2 undefined on input line 147.
 
 [2]
-Underfull \hbox (badness 1939) in paragraph at lines 263--264
+Underfull \hbox (badness 1939) in paragraph at lines 262--263
 [] []\OT1/ptm/m/n/10 With prob-a-bil-ity $\OML/cmm/m/it/10  \OT1/cmr/m/n/10 = 
 [] \OMS/cmsy/m/n/10  []$\OT1/ptm/m/n/10 ,
  []
 
 [3]
-Overfull \hbox (25.90138pt too wide) in alignment at lines 289--292
+Overfull \hbox (25.90138pt too wide) in alignment at lines 288--291
  [] [] [] [][]
  []
 
 
-Overfull \hbox (26.89093pt too wide) in alignment at lines 296--299
+Overfull \hbox (26.89093pt too wide) in alignment at lines 295--298
  [] [] [] [][]
  []
 
 
-Overfull \hbox (3.15773pt too wide) in alignment at lines 303--307
+Overfull \hbox (3.15773pt too wide) in alignment at lines 302--306
  [] [] [] [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--320
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
 [] []\OT1/ptm/m/n/10 Propose a new state hisory, $\OML/cmm/m/it/10 x[] \OMS/cms
 y/m/n/10 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
 [] []\OT1/ptm/m/n/10 With prob-a-bil-ity $\OML/cmm/m/it/10  \OT1/cmr/m/n/10 = 
 [] \OMS/cmsy/m/n/10 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
 []$\OT1/ptm/m/n/10 ,
  []
 
-[4]
 
-LaTeX Warning: Reference `' on page 5 undefined on input line 364.
+Underfull \vbox (badness 3838) has occurred while \output is active []
 
+ [4]
+Underfull \hbox (badness 6978) in paragraph at lines 355--356
+[]\OT1/ptm/m/n/10 The new MCMC back-ward re-sam-pling smoother
+ []
 
-LaTeX Warning: Reference `' on page 5 undefined on input line 364.
+<case1_trajectory-crop.pdf, id=29, 473.77pt x 370.38374pt>
+File: case1_trajectory-crop.pdf Graphic file (type pdf)
 
+<use case1_trajectory-crop.pdf>
+<case2_trajectory-crop.pdf, id=30, 473.77pt x 370.38374pt>
+File: case2_trajectory-crop.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `' on page 5 undefined on input line 364.
-
-
-LaTeX Warning: Reference `' on page 5 undefined on input line 364.
-
-
-LaTeX Warning: Reference `' on page 5 undefined on input line 364.
-
-(D:\pb404\MCMCSmoother\Paper\draft3_MCMCsmoother.bbl
+<use case2_trajectory-crop.pdf>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 29.
+(Font)              <8> on input line 376.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 29.
+(Font)              <6> on input line 376.
 
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
+[]\OT1/ptm/m/n/8 Postion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
+[]\OT1/ptm/m/n/8 Velocity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
+[]\OT1/ptm/m/n/8 Running
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
+[]\OT1/ptm/m/n/8 Unique
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 403--403
+[]\OT1/ptm/m/n/8 Postion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 403--403
+[]\OT1/ptm/m/n/8 Velocity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 403--403
+[]\OT1/ptm/m/n/8 Running
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 403--403
+[]\OT1/ptm/m/n/8 Unique
+ []
+
+
+<case1_smoother_comparison_posRMSE_time-crop.pdf, id=31, 495.8525pt x 385.44pt>
+File: case1_smoother_comparison_posRMSE_time-crop.pdf Graphic file (type pdf)
+<use case1_smoother_comparison_posRMSE_time-crop.pdf> [5 <D:/pb404/MCMCSmoother
+/Paper/case1_trajectory-crop.pdf> <D:/pb404/MCMCSmoother/Paper/case2_trajectory
+-crop.pdf>] (D:\pb404\MCMCSmoother\Paper\draft3_MCMCsmoother.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 33--36
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
 
-[5]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -440,7 +483,8 @@ Missing character: There is no – in font ptmr7t!
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-) [6
+) [6 <D:/pb404/MCMCSmoother/Paper/case1_smoother_comparison_posRMSE_time-crop.p
+df>] [7
 
 ] (D:\pb404\MCMCSmoother\Paper\draft3_MCMCsmoother.aux)
 
@@ -448,13 +492,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4212 strings out of 494019
- 63256 string characters out of 3143883
- 148093 words of memory out of 3000000
- 7454 multiletter control sequences out of 15000+200000
+ 4233 strings out of 494019
+ 63980 string characters out of 3143883
+ 160093 words of memory out of 3000000
+ 7472 multiletter control sequences out of 15000+200000
  44087 words of font info for 81 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 44i,21n,42p,733b,584s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,21n,46p,794b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Fil
@@ -472,9 +516,9 @@ e1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/u
 tmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft3_MCMCsmoother.pdf (6 pages, 218847 bytes).
+Output written on draft3_MCMCsmoother.pdf (7 pages, 235787 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

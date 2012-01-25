@@ -48,7 +48,7 @@ for ii = 1:S
             
             % Propose a new k-1 particle
 %             ind = randsample(Np, 1);
-            ind = randsample(Np, 1, true, exp(wts_array{kk-1}));
+            ind = sample_weights(exp(wts_array{kk-1}));
             
             % Propose a new k state
             [new_x, new_ppsl_prb] = feval(h_bidirec_ppsl, pts_array{kk-1}{ind}(:,kk-1), smooth_pts{ii}(:,kk+1), observs(:,kk), dt_prev, dt_next, h_trans, h_obs);

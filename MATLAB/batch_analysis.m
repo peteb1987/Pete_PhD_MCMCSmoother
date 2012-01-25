@@ -34,6 +34,18 @@ bar( cellfun(@(x) x.mean_pos_rmse, results) );
 figure(4), hold on
 bar( cellfun(@(x) x.mean_vel_rmse, results) );
 
+figure(5), hold on
+bar( cellfun(@(x) x.times, results) );
+
+figure(6), hold on
+inds = 2; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), '*k' )
+inds = 3; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), '*r' )
+inds = 4:8; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), '*-b' )
+inds = 9:13; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), '*-g' )
+legend('FS', 'DBRS', 'MCMC-BRS (M=1-100)', 'MCMC-BSS (M=1-100)');
+xlabel('Running Time'); ylabel('Position RMSE');
+% saveas(6, 'smoother_comparison_posRMSE_time.pdf', 'pdf');
+
 % fprintf(1, '\n');
 % fprintf(1, 'Mean num of unique pts: |  KitiSm  |  DireSm  |  MCMCS1  |  MCMCS3  |  MCMCS10 |  MCMCS30 | MCMCS100 |\n');
 % fprintf(1, '                           %5.2f   |  %5.2f   |  %5.2f   |  %5.2f   |  %5.2f   |  %5.2f   |  %5.2f   |\n', mean(results.kiti.unique_pts), mean(results.bs.unique_pts), mean(results.mcmc1.unique_pts), mean(results.mcmc3.unique_pts), mean(results.mcmc10.unique_pts), mean(results.mcmc30.unique_pts), mean(results.mcmc100.unique_pts));

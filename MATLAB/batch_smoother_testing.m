@@ -3,7 +3,7 @@ dbstop if error
 
 % Get test flag
 % test_flag = str2double(getenv('SGE_TASK_ID'));
-test_flag = 2;
+test_flag = 3;
 
 % Batch test parameters
 num_seed = 10;
@@ -16,6 +16,9 @@ if test_flag == 1
 elseif test_flag == 2
     params.bng_var = (pi/180)^2;
     params.rng_var = 10;
+elseif test_flag == 3
+    params.bng_var = (pi/36)^2;
+    params.rng_var = 100;
 end
 
 % Number of smoothing algorithms
@@ -35,6 +38,8 @@ end
 
 % Loop through random seend
 for rs = 1:num_seed;
+    
+    rs
     
     % Set random seed
     s = RandStream('mt19937ar', 'seed', rs);

@@ -9,7 +9,7 @@ R = [params.bng_var 0; 0 params.rng_var];
 y_mn = [b; r];
 
 if ~isempty(y)
-    obs_prb = log(mvnpdf(y', y_mn', R));
+    obs_prb = fast_log_mvnpdf(y', y_mn', R);
 end
 
 end

@@ -14,4 +14,4 @@ params.prior_var = diag([0.0005; 0.0005; 0.001; 0.001]);
 % Algorithm
 params.Np = 100;
 params.S = 100;
-params.M = 5;                   % Try 5;           50;
+params.M = 10;                   % Try 5;           50;

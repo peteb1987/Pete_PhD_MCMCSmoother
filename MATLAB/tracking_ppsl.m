@@ -12,7 +12,7 @@ H = [-m(2)/(m(1)^2+m(2)^2),    m(1)/(m(1)^2+m(2)^2),     0, 0;
      m(1)/sqrt(m(1)^2+m(2)^2), m(2)/sqrt(m(1)^2+m(2)^2), 0, 0];
 [m, P] = ekf_update1(m, P, y, H, R, h_obs);
 x = mvnrnd(m', P)';
-ppsl_prb = log(mvnpdf(x', m', P));
+ppsl_prb = fast_log_mvnpdf(x', m', P);
 
 % % Bootstrap
 % x = mvnrnd((A*last_x), Q)';
