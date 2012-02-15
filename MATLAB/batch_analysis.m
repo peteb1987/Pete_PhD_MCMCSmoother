@@ -3,7 +3,7 @@
 close all
 
 % Set test flag
-test_flag = 1;
+test_flag = 3;
 
 % Load data
 load(['smoother_test' num2str(test_flag) '.mat']);
@@ -11,7 +11,7 @@ load(['smoother_test' num2str(test_flag) '.mat']);
 % 
 NA = 13;
 t = params.dt:params.dt:params.dt*params.N;
-col = {[1 0 0], [.5 0 0], [0 1 0], [0 .5 0], [0 0 1], [0 0 .5]};
+col = {[1 0 0], [1 .5 .5], [0 1 0], [.5 1 .5], [0 0 1], [.5 .5 1]};
 
 %% Output results
 
