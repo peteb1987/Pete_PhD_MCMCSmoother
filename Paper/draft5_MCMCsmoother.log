@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  15 FEB 2012 18:10
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  16 FEB 2012 14:45
 entering extended mode
 **D:/pb404/MCMCSmoother/Paper/draft5_MCMCsmoother.tex
 (D:/pb404/MCMCSmoother/Paper/draft5_MCMCsmoother.tex
@@ -185,30 +185,16 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithms\algorithm.sty"
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
-nment
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithms\algorithmic.sty"
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count104
-\float@exts=\toks21
-\float@box=\box29
-\@float@everytoks=\toks22
-\@floatcapt=\box30
-)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks23
-\c@algorithm=\count105
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithms\algorithmic.sty"
-Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count106
-\c@ALC@line=\count107
-\c@ALC@rem=\count108
-\c@ALC@depth=\count109
+\c@ALC@unique=\count104
+\c@ALC@line=\count105
+\c@ALC@rem=\count106
+\c@ALC@depth=\count107
 \ALC@tlm=\skip47
 \algorithmicindent=\skip48
 )
@@ -216,21 +202,21 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen128
 \extrarowheight=\dimen129
-\NC@list=\toks24
+\NC@list=\toks21
 \extratabsurround=\skip49
 \backup@length=\skip50
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mdwtools\mdwmath.sty"
 Package: mdwmath 1996/04/11 1.1 Nice mathematical things
-\sq@sqrt=\count110
+\sq@sqrt=\count108
 LaTeX Info: Redefining \sqrt on input line 84.
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mdwtools\mdwtab.sty"
 Package: mdwtab 1998/04/28 1.9 Table typesetting with style
-\tab@state=\count111
-\tab@columns=\count112
-\tab@preamble=\toks25
-\tab@shortline=\toks26
+\tab@state=\count109
+\tab@columns=\count110
+\tab@preamble=\toks22
+\tab@shortline=\toks23
 \extrarowheight=\dimen130
 \tabextrasep=\dimen131
 \arrayextrasep=\dimen132
@@ -241,7 +227,7 @@ Package: mdwtab 1998/04/28 1.9 Table typesetting with style
 \tab@endheight=\dimen137
 \tab@leftskip=\skip51
 \tab@rightskip=\skip52
-\fn@notes=\box31
+\fn@notes=\box29
 \fn@width=\dimen138
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eqparbox\eqparbox.sty"
@@ -263,17 +249,17 @@ Package: caption3 2010/01/14 v3.1m caption3 kernel (AR)
 Package caption Info: Unknown document class (or package),
 (caption)             standard defaults will be used on input line 1084.
 )
-\c@KVtest=\count113
+\c@KVtest=\count111
 \sf@farskip=\skip55
 \sf@captopadj=\dimen145
 \sf@capskip=\skip56
 \sf@nearskip=\skip57
-\c@subfigure=\count114
-\c@subfigure@save=\count115
-\c@lofdepth=\count116
-\c@subtable=\count117
-\c@subtable@save=\count118
-\c@lotdepth=\count119
+\c@subfigure=\count112
+\c@subfigure@save=\count113
+\c@lofdepth=\count114
+\c@subtable=\count115
+\c@subtable@save=\count116
+\c@lotdepth=\count117
 \sf@top=\skip58
 \sf@bottom=\skip59
 )
@@ -303,16 +289,16 @@ LaTeX Font Info:    ... okay on input line 30.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
+\scratchcounter=\count118
 \scratchdimen=\dimen146
-\scratchbox=\box32
-\nofMPsegments=\count121
-\nofMParguments=\count122
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count123
+\scratchbox=\box30
+\nofMPsegments=\count119
+\nofMParguments=\count120
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count121
 \MPscratchDim=\dimen147
-\MPnumerator=\count124
-\everyMPtoPDFconversion=\toks28
+\MPnumerator=\count122
+\everyMPtoPDFconversion=\toks25
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
@@ -331,43 +317,39 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-] [2] [3]
-Overfull \hbox (25.90138pt too wide) in alignment at lines 288--291
- [] [] [] [][]
+]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 139--140
+[][] 
  []
 
 
-Overfull \hbox (37.12708pt too wide) in alignment at lines 295--298
- [] [] [] [][]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 168--169
+[][] 
+ []
+
+[2]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 213--214
+[][] 
  []
 
 
-Overfull \hbox (3.15773pt too wide) in alignment at lines 302--306
- [] [] [] [][]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 282--283
+[][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 318--319
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 356--356
 [] []\OT1/ptm/m/n/10 Propose a new state hisory, $\OML/cmm/m/it/10 x[] \OMS/cms
 y/m/n/10 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
-[] []\OT1/ptm/m/n/10 With prob-a-bil-ity $\OML/cmm/m/it/10  \OT1/cmr/m/n/10 = 
-[] \OMS/cmsy/m/n/10 
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 356--357
+[][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
-[]$\OT1/ptm/m/n/10 ,
- []
-
-
-Underfull \vbox (badness 3838) has occurred while \output is active []
-
- [4]
-Underfull \hbox (badness 6978) in paragraph at lines 355--356
+[4]
+Underfull \hbox (badness 6978) in paragraph at lines 392--393
 []\OT1/ptm/m/n/10 The new MCMC back-ward re-sam-pling smoother
  []
 
@@ -380,46 +362,46 @@ File: case2_trajectory-crop.pdf Graphic file (type pdf)
 
 <use case2_trajectory-crop.pdf>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 380.
+(Font)              <8> on input line 417.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 380.
+(Font)              <6> on input line 417.
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--382
+Underfull \hbox (badness 10000) in paragraph at lines 419--419
 []\OT1/ptm/m/n/8 Postion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--382
+Underfull \hbox (badness 10000) in paragraph at lines 419--419
 []\OT1/ptm/m/n/8 Velocity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--382
+Underfull \hbox (badness 10000) in paragraph at lines 419--419
 []\OT1/ptm/m/n/8 Running
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--382
+Underfull \hbox (badness 10000) in paragraph at lines 419--419
 []\OT1/ptm/m/n/8 Unique
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--409
+Underfull \hbox (badness 10000) in paragraph at lines 446--446
 []\OT1/ptm/m/n/8 Postion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--409
+Underfull \hbox (badness 10000) in paragraph at lines 446--446
 []\OT1/ptm/m/n/8 Velocity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--409
+Underfull \hbox (badness 10000) in paragraph at lines 446--446
 []\OT1/ptm/m/n/8 Running
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--409
+Underfull \hbox (badness 10000) in paragraph at lines 446--446
 []\OT1/ptm/m/n/8 Unique
  []
 
@@ -452,36 +434,38 @@ Missing character: There is no – in font ptmr7t!
 ** the default language instead.
 ) [6 <D:/pb404/MCMCSmoother/Paper/case1_smoother_comparison_posRMSE_time-crop.p
 df> <D:/pb404/MCMCSmoother/Paper/case2_smoother_comparison_posRMSE_time-crop.pd
-f>] (D:\pb404\MCMCSmoother\Paper\draft5_MCMCsmoother.aux) ) 
+f>] [7
+
+] (D:\pb404\MCMCSmoother\Paper\draft5_MCMCsmoother.aux) ) 
 Here is how much of TeX's memory you used:
- 3817 strings out of 494019
- 56855 string characters out of 3143883
- 145708 words of memory out of 3000000
- 7060 multiletter control sequences out of 15000+200000
+ 3729 strings out of 494019
+ 55590 string characters out of 3143883
+ 140105 words of memory out of 3000000
+ 6979 multiletter control sequences out of 15000+200000
  45811 words of font info for 83 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 36i,21n,46p,794b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x
-86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><
-C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on draft5_MCMCsmoother.pdf (6 pages, 238542 bytes).
+ 36i,21n,46p,794b,530s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86
+)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on draft5_MCMCsmoother.pdf (7 pages, 239877 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
+ 123 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

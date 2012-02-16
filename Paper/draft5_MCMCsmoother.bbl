@@ -129,4 +129,13 @@ W.~K. Hastings, ``{Monte Carlo} sampling methods using {Markov} chains and
   \url{http://biomet.oxfordjournals.org/content/57/1/97.abstract}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Bar-Shalom2002}
+\BIBentryALTinterwordspacing
+Y.~Bar-Shalom, X.-R. Li, and T.~Kirubarajan, \emph{Estimation with Applications
+  to Tracking and Navigation: Theory, Algorithms and Software}.\hskip 1em plus
+  0.5em minus 0.4em\relax Wiley Online Library, 2002, print ISBN:
+  9780471416555. [Online]. Available:
+  \url{http://onlinelibrary.wiley.com/book/10.1002/0471221279}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

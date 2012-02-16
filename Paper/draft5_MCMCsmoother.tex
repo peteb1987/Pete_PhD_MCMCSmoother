@@ -12,7 +12,7 @@
   \DeclareGraphicsExtensions{.eps}
 \fi
 \usepackage[cmex10]{amsmath}
-\usepackage{algorithm}
+%\usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{array}
 \usepackage{mdwmath}
@@ -120,13 +120,15 @@ w_{k}^{(i)} & =       & \frac{ p(x_{k-1}^{(i)}, x_k^{(i)}|y_{1:k}) }{ q(x_{x}^{(
 
 Normalisation is enforced by scaling the weights so that they sum to 0. Finally, $x_{k-1}$ is marginalised from the distribution by simply discarding the values from each particle.
 
-The particle filter is summarised below.%in algorithm~\ref{alg:PF}.
+The particle filter is summarised in Fig.~\ref{alg:PF}.
 
 %\begin{algorithm}
-\begin{algorithmic}
+\begin{figure}
+\fbox{\parbox{\columnwidth}{
+\begin{algorithmic}[1]
 	\STATE Initialise particles from prior, $x_{0}^{(i)} \sim p(x_{0})$.
-	\FOR{$k = 1 \dots K$}
- 		\FOR{$i = 1 \dots N_F$}
+	\FOR{$k = 1$ \TO $K$}
+ 		\FOR{$i = 1$ \TO $N_F$}
  			\STATE Sample $\{ x_{k-1}^{(i)}, x_k^{(i)} \} \sim \sum_j v_{k-1}^{(j)} q(x_k|x_{k-1}^{(j)})$.
  			\STATE Weight $w_{k}^{(i)} \propto \frac{ p(y_k|x_k^{(i)}) p(x_k^{(i)}|x_{k-1}^{(i)}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) } \times \frac{w_{k-1}^{(i)}}{v_{k-1}^{(i)} }$.
  			\STATE Discard $x_{k-1}^{(i)}$.
@@ -134,8 +136,10 @@ The particle filter is summarised below.%in algorithm~\ref{alg:PF}.
  	  \STATE Scale weights so that $\sum_i w_{k}^{(i)} = 1$.
  	\ENDFOR
 \end{algorithmic}
-%\caption{Particle filter algorithm}
-%\label{alg:PF}
+}}
+\caption{Particle filter algorithm}
+\label{alg:PF}
+\end{figure}
 %\end{algorithm}
 
 \subsection{Existing Algorithms for Particle Smoothing }
@@ -146,21 +150,25 @@ The most basic particle smoother was presented in \cite{Kitagawa1996}, and is a 
 
 The weakness of this simple, filter-smoother (FS) is degeneracy of the particles in the path-space. Every time the particles are resampled, those with low weights do not appear in the approximation at the next step, while those with high weights appear multiple times. The result is that many, or even all, particles will share a common ancestor, before which they all have the same set of state values. If the objective is only to produce a single point estimate then this might be sufficient, but to characterise the complete smoothing distribution, the path-space diversity of the approximation must be improved.
 
-The filter-smoother is summarised below.%in algorithm~\ref{alg:FS}.
+The filter-smoother is summarised in Fig.~\ref{alg:FS}.
 
 %\begin{algorithm}
-\begin{algorithmic}
+\begin{figure}
+\fbox{\parbox{\columnwidth}{
+\begin{algorithmic}[1]
  	\STATE Initialise particles from prior, $x_{0}^{(i)} \sim p(x_{0})$.
- 	\FOR{$k = 1 \dots K$}
- 		\FOR{$i = 1 \dots N_F$}
+ 	\FOR{$k = 1$ \TO $K$}
+ 		\FOR{$i = 1$ \TO $N_F$}
  			\STATE Sample $\{ x_{1:k-1}^{(i)}, x_k^{(i)} \} \sim \sum_j v_{k-1}^{(j)} q(x_k|x_{k-1}^{(j)})$.
  			\STATE Weight $w_{k}^{(i)} \propto \frac{ p(y_k|x_k^{(i)}) p(x_k^{(i)}|x_{k-1}^{(i)}) }{ q(x_{x}^{(i)}|x_{k-1}^{(i)}) } \times \frac{w_{k-1}^{(i)}}{v_{k-1}^{(i)} }$.
  		\ENDFOR
  	  \STATE Scale weights so that $\sum_i w_{k}^{(i)} = 1$.
  	\ENDFOR
- \end{algorithmic}
-%\caption{Filter-smoother algorithm}
-%\label{alg:FS}
+\end{algorithmic}
+}}
+\caption{Filter-smoother algorithm}
+\label{alg:FS}
+\end{figure}
 %\end{algorithm}
 
 An improved particle smoothing algorithm was presented in \cite{Godsill2004}. This works by constructing new particles from the smoothing distribution by resampling from the filtering approximations. The sampling procedure exploits the following factorisation of the joint distribution.
@@ -185,23 +193,27 @@ Substituting the filtering approximation into this expression yields a particle 
 \tilde{w}_k^{(i)} \propto w_k^{(i)} p(\tilde{x}_{k+1}|x_k^{(i)}) \label{eq:DBRS_weights}
 \end{IEEEeqnarray}
 
-The procedure may be repeated to produce as many samples from the joint smoothing distribution as required. This backward-resampling smoother is summarised below.% in algorithm~\ref{alg:DBRS}.
+The procedure may be repeated to produce as many samples from the joint smoothing distribution as required. This backward-resampling smoother is summarised in Fig.~\ref{alg:DBRS}.
 
 %\begin{algorithm}
-\begin{algorithmic}
+\begin{figure}
+\fbox{\parbox{\columnwidth}{
+\begin{algorithmic}[1]
  	\STATE Run a particle filter to approximate $p(x_k|y_{1:k})$ for each $k$.
-	\FOR{$i = 1 \dots N_S$}
+	\FOR{$i = 1$ \TO $N_S$}
 		\STATE Sample $\tilde{x}_{K}^{(i)} \sim \sum_j w_K^{(j)} \delta_{x_{K}^{(j)}}(x_{K})$.
-		\FOR{$k = K-1 \dots 1$}
-			\FOR{$j = 1 \dots N_F$}
+		\FOR{$k = K-1$ \TO $1$}
+			\FOR{$j = 1$ \TO $N_F$}
 				\STATE Calculate weight $\tilde{w}_k^{(j)} = w_k^{(j)} p(\tilde{x}_{k+1}|x_k^{(j)})$.
 			\ENDFOR
 			\STATE Sample $\tilde{x}_{k}^{(i)} \sim \sum_j \tilde{w}_k^{(j)} \delta_{x_{k}^{(j)}}(x_{k})$.
 		\ENDFOR
 	\ENDFOR
 \end{algorithmic}
-%\caption{Direct backward-resampling smoother algorithm}
-%\label{alg:DBRS}
+}}
+\caption{Direct backward-resampling smoother algorithm}
+\label{alg:DBRS}
+\end{figure}
 %\end{algorithm}
 
 A method for drawing samples from the joint smoothing distribution, $p(x_{1:K}|y_{1:K})$, is included in \cite{Briers2010}. The principal topic of this paper is a two-filter smoother for estimation of the marginal smoothing distributions, $p(x_{k}|y_{1:K})$, by combination of the results from one forward and one backward particle filter. Particles from the joint distribution may then be generated by resampling from either the forward or backward filters (or some combination) in the manner of the backward-resampling smoother outlined above.%algorithm~\ref{alg:DBRS}.
@@ -248,16 +260,18 @@ Note that $w_k^{*}$ indicates the particle weight of the proposed new state, $x_
 
 The final state of each chain is used as a sample from the required conditional distribution.
 
-The complete MCMC backward-resampling smoother is summarised below.% in algorithm~\ref{alg:MCMC-BRS}.
+The complete MCMC backward-resampling smoother is summarised in Fig.~\ref{alg:MCMC-BRS}.
 
 %\begin{algorithm}
-\begin{algorithmic}
+\begin{figure}
+\fbox{\parbox{\columnwidth}{
+\begin{algorithmic}[1]
  	\STATE Run a particle filter to approximate $p(x_{1:k}|y_{1:k})$ for each $k$.
-	\FOR{$i = 1 \dots N_S$}
+	\FOR{$i = 1$ \TO $N_S$}
 		\STATE Sample $\tilde{x}_{1:K}^{(i)} \sim \sum_j w_K^{(j)} \delta_{x_{1:K}^{(j)}}(x_{1:K})$.
-		\FOR{$k = K-1 \dots 1$}
+		\FOR{$k = K-1$ \TO $1$}
 			\STATE $x_{1:k}^{(i)(0)} \gets \tilde{x}_{1:k}^{(i)}$.
-			\FOR{$m = 1 \dots M$}
+			\FOR{$m = 1$ \TO $M$}
 				\STATE Propose a new state, $x_{1:k}^{(i)*} \sim \sum_j \tilde{v}_k^{(j)} \delta_{x_{1:k}^{(j)}}(x_{1:k})$.
 				\STATE With probability $\alpha$ specified by (\ref{eq:MCMC-BRS_ap}),\\ $x_{1:k}^{(i)(m)} \gets x_{1:k}^{(i)*}$. Otherwise, $x_{1:k}^{(i)(m)} \gets x_{1:k}^{(i)(m-1)}$.
 			\ENDFOR
@@ -265,8 +279,10 @@ The complete MCMC backward-resampling smoother is summarised below.% in algorith
 		\ENDFOR
 	\ENDFOR
 \end{algorithmic}
-%\caption{MCMC backward-resampling smoother algorithm}
-%\label{alg:MCMC-BRS}
+}}
+\caption{MCMC backward-resampling smoother algorithm}
+\label{alg:MCMC-BRS}
+\end{figure}
 %\end{algorithm}
 
 For a practical implementation, it is not necessary to store the complete particles of the filter-smoother approximations, $\hat{p}(x_{1:k}|y_{1:k})$, which would require memory space which scaled quadratically with $K$. As the smoother progresses backwards in time, the earlier states in the sequence are repeatedly overwritten, and so it is not necessary ever to have known them. Thus, it is only necessary to store the last two states in each filter-smoother particle (i.e. $\{x_{k-1}^{(j)}\}$ and $\{x_{k}^{(j)}\}$).
@@ -279,54 +295,68 @@ With the direct backward-resampling smoother, the only parameter to be chosen is
 
 \section{An MCMC particle smoother with improved support} \label{sec:new_state_smoother}
 
+Smoothers based on backward-resampling, both the direct sampler of \cite{Godsill2004} and the MCMC version outlined in the previous section, are limited by the fact that states are only selected from those which appear in the filtering approximation. If there is a significant difference between the filtering and smoothing densities, then the the particles are unlikely to be in the right locations to represent the smoothing distribution well, and the resulting approximation will be poor.
+
 In \cite{Fearnhead2010}, the authors described an algorithm for estimating the marginal smoothing distributions. For this method, states were proposed afresh rather than simply resampling from the filtering approximations. This yielded improvements in accuracy and particle diversity over other marginal smoothing techniques, and also the advantage of $\mathcal{O}(N_S \times K)$ complexity. Here we adapt this method for generating particles from the joint smoothing distribution. Again, an MCMC procedure is employed.
 
 %The method described in \cite{Fearnhead2010} uses a forward and a backward particle filter. To develop a marginal smoothing approximation at time step $k$, particles are resampled from the forward filter at step $k-1$, and from the backward filter and step $k+1$. A new state for step $k$ is then sampled from a continuous proposal distribution conditional on the previous and next states, and an importance weight is assigned. It is undesirable to use importance sampling for generating particles from the joint sampling distribution, as the required resampling is liable to lead to a loss of particle diversity similar to that suffered by the filter-smoother.
 
 The smoother described in \cite{Fearnhead2010} uses importance sampling to approximate the marginal smoothing distributions. This method could be extended to estimation of the joint smoothing distribution by applying it sequentially. However, the resampling required to limit weight degeneracy would lead to a loss of path-space diversity similar to that suffered by the filter-smoother.
 
-The proposed new method proceeds in a similar manner to the MCMC backward-resampling algorithm. However, this time $x_{1:k-1}$, is resampled from the particle filter-smoother approximation from time step $k-1$. The current state, $x_k$, is then sampled afresh from a new proposal distribution. Thus the factorised proposal may be written as follows:
+The proposed new method proceeds in a similar manner to the MCMC backward-resampling algorithm. However, this time only $x_{1:k-1}$ is resampled from the particle filter-smoother approximation from time step $k-1$. The current state, $x_k$, is then sampled afresh from a new proposal distribution. Thus the factorised proposal may be written as follows:
 
 \begin{IEEEeqnarray}{rCl}
-q(x_{1:k}|\tilde{x}_{k+1}, y_{1:K}) & = & q(x_{1:k-1}|y_{1:k-1}) q(x_{k}|x_{k-1}, \tilde{x}_{k+1}, y_{k}) \nonumber \\
+\IEEEeqnarraymulticol{3}{l}{ q(x_{1:k}|\tilde{x}_{k+1}, y_{1:K}) = q(x_{1:k-1}|y_{1:k-1}) q(x_{k}|x_{k-1}, \tilde{x}_{k+1}, y_{k}) } \nonumber \\
                                     & = & \sum_j \tilde{v}_{k-1}^{(j)} \delta_{x_{1:k-1}^{(j)}}(x_{1:k-1}) q(x_{k}|x_{k-1}^{(j)}, \tilde{x}_{k+1}, y_{k})  .
 \end{IEEEeqnarray}
 
 The target distribution is also factorised.
 
 \begin{IEEEeqnarray}{rCl}
-p(x_{1:k}|\tilde{x}_{k+1}, y_{1:K}) & =       & p(x_{1:k}|\tilde{x}_{k+1}, y_{1:k}) \nonumber \\
+\IEEEeqnarraymulticol{3}{l}{p(x_{1:k}|\tilde{x}_{k+1}, y_{1:K}) = p(x_{1:k}|\tilde{x}_{k+1}, y_{1:k}) } \nonumber \\
                                     & \propto & p(\tilde{x}_{k+1}|x_k) p(x_k|x_{k-1}) p(y_k|x_x) p(x_{1:k-1}|y_{1:k-1})
 \end{IEEEeqnarray}
 
 Using the filter-smoother approximation, the MH acceptance probabilities may then be calculated.
 
 \begin{IEEEeqnarray}{rCl}
-\alpha &=& \frac{ \hat{p}(x_{1:k}^{*}|\tilde{x}_{k+1}, y_{1:K}) q(x_{1:k}^{(m)}|\tilde{x}_{k+1}, y_{1:K}) }{ \hat{p}(x_{1:k}^{(m)}|\tilde{x}_{k+1}, y_{1:K}) q(x_{1:k}^{*}|\tilde{x}_{k+1}, y_{1:K}) } \nonumber \\
- &=& \frac{ w_{k-1}^{*} \tilde{v}_{k-1}^{(m)} }{  w_{k-1}^{(m)} \tilde{v}_{k-1}^{*} } \times \nonumber \\
- \IEEEeqnarraymulticol{3}{l}{\frac{ p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{*}) p(y_k|x_k^{*}) q(x_k^{(m)}|x_{k-1}^{(m)},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k^{(m)}) p(x_k^{(m)}|x_{k-1}^{(m)}) p(y_k|x_k^{(m)}) q(x_k^{*}|x_{k-1}^{*},\tilde{x}_{k+1},y_k) } } .
+\alpha &=& \min \Bigg[ 1, \frac{ \hat{p}(x_{1:k}^{*}|\tilde{x}_{k+1}, y_{1:K}) q(x_{1:k}^{(m)}|\tilde{x}_{k+1}, y_{1:K}) }{ \hat{p}(x_{1:k}^{(m)}|\tilde{x}_{k+1}, y_{1:K}) q(x_{1:k}^{*}|\tilde{x}_{k+1}, y_{1:K}) } \Bigg] \nonumber \\
+ &=& \min \Bigg[ 1, \frac{ w_{k-1}^{*} p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{*}) p(y_k|x_k^{*}) }{ w_{k-1}^{(m)} p(\tilde{x}_{k+1}|x_k^{(m)}) p(x_k^{(m)}|x_{k-1}^{(m)}) p(y_k|x_k^{(m)}) } \nonumber \\
+ & & \times \frac{ \tilde{v}_{k-1}^{(m)} q(x_k^{(m)}|x_{k-1}^{(m)},\tilde{x}_{k+1},y_k) }{ \tilde{v}_{k-1}^{*} q(x_k^{*}|x_{k-1}^{*},\tilde{x}_{k+1},y_k) } \Bigg] \label{eq:MCMC-BSS_ap}
+% \frac{ w_{k-1}^{*} \tilde{v}_{k-1}^{(m)} }{  w_{k-1}^{(m)} \tilde{v}_{k-1}^{*} } \times \nonumber \\
+% \IEEEeqnarraymulticol{3}{l}{\frac{ p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{*}) p(y_k|x_k^{*}) q(x_k^{(m)}|x_{k-1}^{(m)},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k^{(m)}) p(x_k^{(m)}|x_{k-1}^{(m)}) p(y_k|x_k^{(m)}) q(x_k^{*}|x_{k-1}^{*},\tilde{x}_{k+1},y_k) } } .
 \end{IEEEeqnarray}
 
-The complete MCMC backward-sampling smoother is summarised below.% in algorithm~\ref{alg:MCMC-BSS}.
+As noted in \cite{Fearnhead2010}, the optimal choice of proposal is the conditional posterior state distribution,
+
+\begin{IEEEeqnarray}{rCl}
+q(x_k|x_{k-1},x_{k+1},y_k) & = & p(x_k|x_{k-1},x_{k+1},y_k)  .
+\end{IEEEeqnarray}
+
+The complete MCMC backward-sampling smoother is summarised in Fig.~\ref{alg:MCMC-BSS}.
 
 %\begin{algorithm}
- \begin{algorithmic}
+ \begin{figure}
+\fbox{\parbox{\columnwidth}{
+\begin{algorithmic}[1]
  	\STATE Run a particle filter to approximate $p(x_{1:k}|y_{1:k})$ for each $k$.
-	\FOR{$i = 1 \dots N_S$}
+	\FOR{$i = 1$ \TO $N_S$}
 		\STATE Sample $\tilde{x}_{1:K}^{(i)} \sim \sum_j w_K^{(j)} \delta_{x_{1:K}^{(j)}}(x_{1:K})$.
-		\FOR{$k = K-1 \dots 1$}
+		\FOR{$k = K-1$ \TO $1$}
 			\STATE $x_{1:k}^{(i)(0)} \gets \tilde{x}_{1:k}^{(i)}$.
-			\FOR{$m = 1 \dots M$}
+			\FOR{$m = 1$ \TO $M$}
 				\STATE Propose a new state hisory, $x_{1:k-1}^{(i)*} \sim \sum_j \tilde{v}_{k-1}^{(j)} \delta_{x_{1:k-1}^{(j)}}(x_{1:k-1})$.
 				\STATE Propose a new state, $x_{1:k}^{(i)*} \sim q(x_k|x_{k-1}^{*},\tilde{x}_{k+1},y_k)$.
-				\STATE With probability $\alpha = \frac{ w_{k-1}^{*} \tilde{v}_{k-1}^{(m)} }{  w_{k-1}^{(m)} \tilde{v}_{k-1}^{*} } \times \frac{ p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{*}) p(y_k|x_k^{*}) q(x_k^{(m)}|x_{k-1}^{(m)},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k^{(m)}) p(x_k^{(m)}|x_{k-1}^{(m)}) p(y_k|x_k^{(m)}) q(x_k^{*}|x_{k-1}^{*},\tilde{x}_{k+1},y_k) }$, $x_{1:k}^{(i)(m)} \gets x_{1:k}^{(i)*}$. Otherwise, $x_{1:k}^{(i)(m)} \gets x_{1:k}^{(i)(m-1)}$.
+				\STATE With probability $\alpha$ specified by (\ref{eq:MCMC-BSS_ap}),\\ $x_{1:k}^{(i)(m)} \gets x_{1:k}^{(i)*}$. Otherwise, $x_{1:k}^{(i)(m)} \gets x_{1:k}^{(i)(m-1)}$.
 			\ENDFOR
-			\STATE $\tilde{x}_{1:k}^{(i)} \gets x_{k}^{(i)(M)}$
+			\STATE $\tilde{x}_{1:k}^{(i)} \gets x_{1:k}^{(i)(M)}$
 		\ENDFOR
 	\ENDFOR
 \end{algorithmic}
-%\caption{MCMC backward-sampling smoother algorithm}
-%\label{alg:MCMC-BSS}
+}}
+\caption{MCMC backward-sampling smoother algorithm}
+\label{alg:MCMC-BSS}
+\end{figure}
 %\end{algorithm}
 
 The computational complexity of this algorithm is $\mathcal{O}(M \times N_S \times K)$, the same as the MCMC resampling smoother. Because the support of the smoother particles is not restricted to the states which appear in the filter approximation, the error performance is expected to be improved.
@@ -335,14 +365,19 @@ The computational complexity of this algorithm is $\mathcal{O}(M \times N_S \tim
 
 \section{Simulations} \label{sec:simulations}
 
-The performance of the new smoothers was tested on a simple 2D tracking model. The trajectory of a single target was simulated using linear-Gaussian dynamics and observed via a nonlinear radar-type measurement model.
+The performance of the new smoothers was tested on a simple 2D tracking model. The trajectory of a single target was simulated using linear-Gaussian dynamics and observed via a nonlinear radar-type measurement model (see \cite{Bar-Shalom2002} for details).
+
+%\begin{IEEEeqnarray}{rCl}
+%\underbrace{\begin{bmatrix}x_k \\ y_k \\ \dot{x}_k \\ \dot{y}_k\end{bmatrix}}_{\mathbf{x}_k} &=& \underbrace{\begin{bmatrix}I_2 & \Delta t I_2 \\ 0_2 & I_2\end{bmatrix}}_{\mathbf{A}} \underbrace{\begin{bmatrix}x_{k-1} \\ y_{k-1} \\ \dot{x}_{k-1} \\ \dot{y}_{k-1}\end{bmatrix}}_{\mathbf{x}_{k-1}} + \underbrace{\begin{bmatrix}w_{1,k} \\ w_{2,k} \\ w_{3,k} \\ w_{4,k}\end{bmatrix}}_{\mathbf{w}_k} \\
+%\underbrace{\begin{bmatrix}b_k \\ r_x\end{bmatrix}}_{\mathbf{y}_k} &=& \begin{bmatrix}\tan^{-1}(y_k / x_k) \\ \sqrt{x_k^2+y_k^2} \end{bmatrix} + \underbrace{\begin{bmatrix}v_{1,k} \\ v_{2,k}\end{bmatrix}}_{\mathbf{v}_k}
+%\end{IEEEeqnarray}
 
 \begin{IEEEeqnarray}{rCl}
-\underbrace{\begin{bmatrix}x_k \\ y_k \\ \dot{x}_k \\ \dot{y}_k\end{bmatrix}}_{\mathbf{x}_k} &=& \underbrace{\begin{bmatrix}I_2 & \Delta t I_2 \\ 0_2 & I_2\end{bmatrix}}_{\mathbf{A}} \underbrace{\begin{bmatrix}x_{k-1} \\ y_{k-1} \\ \dot{x}_{k-1} \\ \dot{y}_{k-1}\end{bmatrix}}_{\mathbf{x}_{k-1}} + \underbrace{\begin{bmatrix}w_{1,k} \\ w_{2,k} \\ w_{3,k} \\ w_{4,k}\end{bmatrix}}_{\mathbf{w}_k} \\
+\underbrace{\begin{bmatrix}x_k \\ y_k \\ \dot{x}_k \\ \dot{y}_k\end{bmatrix}}_{\mathbf{x}_k} &=& \begin{bmatrix}I_2 & \Delta t I_2 \\ 0_2 & I_2\end{bmatrix} \underbrace{\begin{bmatrix}x_{k-1} \\ y_{k-1} \\ \dot{x}_{k-1} \\ \dot{y}_{k-1}\end{bmatrix}}_{\mathbf{x}_{k-1}} + \underbrace{\begin{bmatrix}w_{1,k} \\ w_{2,k} \\ w_{3,k} \\ w_{4,k}\end{bmatrix}}_{\mathbf{w}_k} \\
 \underbrace{\begin{bmatrix}b_k \\ r_x\end{bmatrix}}_{\mathbf{y}_k} &=& \begin{bmatrix}\tan^{-1}(y_k / x_k) \\ \sqrt{x_k^2+y_k^2} \end{bmatrix} + \underbrace{\begin{bmatrix}v_{1,k} \\ v_{2,k}\end{bmatrix}}_{\mathbf{v}_k}
 \end{IEEEeqnarray}
 
-The time between successive time steps is $\Delta t$. $I_2$ and $0_2$ denote the $2 \times 2$ identity and zero matrices. The random variables $\mathbf{w}_k$ and $\mathbf{v}_k$ have a zero-mean Gaussian distribution with covariance matrices $\mathbf{Q}$ and $\mathbf{R}$ respectively.
+The time between successive time steps is $\Delta t$. $I_2$ and $0_2$ denote the $2 \times 2$ identity and zero matrices. The random variables $\mathbf{w}_k$ and $\mathbf{v}_k$ are independent and are zero-mean Gaussian distributed with covariance matrices $\mathbf{Q}$ and $\mathbf{R}$ respectively.
 
 \begin{IEEEeqnarray}{rCl}
 \mathbf{Q} &=& \sigma^2_P \begin{bmatrix}\frac{\Delta t^3}{3} I_2 & \frac{\Delta t^2}{2} I_2 \\ \frac{\Delta t^2}{2} I_2 & \Delta t I_2 \end{bmatrix} \\
@@ -358,9 +393,9 @@ The following algorithms were all implemented for comparison in MATLAB:
 	\item The new MCMC backward sampling smoother (MCMC-BSS) of section~\ref{sec:new_state_smoother}, with several values of $M$
 \end{itemize}
 
-The algorithms were all used to generate 100 particles from the joint smoothing distribution, using particle filters with 100 particles. Where appropriate, proposal weights were chosen to be equal to filtering weights, i.e. $v_k^{(j)} = w_k^{(j)}$. The particle filter and MCMC-BSS both use ``optimal importance distributions'' (see e.g. \cite{Cappe2007}) with linearisations of the observation model where appropriate.
+The algorithms were all used to generate 100 particles from the joint smoothing distribution, using particle filters with 100 particles. Where appropriate, proposal weights were chosen to be equal to filtering weights, i.e. $v_k^{(j)} = w_k^{(j)}$. The particle filter and MCMC-BSS both use ``optimal importance distributions'' with linearisations of the observation model where appropriate.
 
-10 realisations of 500 time steps were simulated from the model and the algorithms tested on each one. Results are shown here for high and low observation noise cases. For case 1, the observation variances were set to $\sigma_B = \pi/720$ and $\sigma_R = 0.1$. For case 2, $\sigma_B = \pi/36$ and $\sigma_R = 100$. Other model settings are $\Delta t = 1$, $\sigma_P = 1$, and $x_0 = [-100, 50, 10, 0]^T$. Example tracjectories and observations from the two cases are shown in figure~\ref{fig:example_trajectories}.
+10 realisations of 500 time steps were simulated from the model and the algorithms tested on each one. Results are shown here for high and low observation noise cases. For case 1, the observation variances were set to $\sigma_B = \pi/720$ and $\sigma_R = 0.1$. For case 2, $\sigma_B = \pi/36$ and $\sigma_R = 100$. Other model settings are $\Delta t = 1$, $\sigma_P = 1$, and $x_0 = [-100, 50, 10, 0]^T$. Example trajectories and observations from the two cases are shown in figure~\ref{fig:example_trajectories}.
 
 \begin{figure}[!t]
 \centerline{\subfloat[Case 1]{\includegraphics[width=0.45\columnwidth]{case1_trajectory-crop.pdf}%
@@ -372,7 +407,7 @@ The algorithms were all used to generate 100 particles from the joint smoothing 
 \label{fig:example_trajectories}
 \end{figure}
 
-Tables~\ref{tab:case1_performance} and~\ref{tab:case1_performance} show the root-mean-square errors (RMSEs) in position and velocity obtained by the different algorithms with the two parameter cases, along with running times (excluding the time for filtering) and the mean number of unique particles at each time instant. The trade-off between speed and error is shown in figures~\ref{fig:case1_rmse_vs_time} and~\ref{fig:case2_rmse_vs_time}.
+Tables~\ref{tab:case1_performance} and~\ref{tab:case2_performance} show the root-mean-square errors (RMSEs) in position and velocity obtained by the different algorithms with the two parameter cases, along with running times (excluding the time for filtering) and the mean number of unique particles at each time instant. The trade-off between speed and error is shown in figures~\ref{fig:case1_rmse_vs_time} and~\ref{fig:case2_rmse_vs_time}.
 
 \begin{table}[!t]%
 \renewcommand{\arraystretch}{1.3}
@@ -442,18 +477,18 @@ MCMC-BSS (100)& 5.34 & 1.68 & 471 & 91.8 \\
 \label{fig:case2_rmse_vs_time}%
 \end{figure}
 
-The MCMC-BRS smoother error approaches that of the DBRS as the number of MCMC steps, $M$, increases. However, for small $M$, the error is only very slightly larger than that of the DBRS for very low running times. For a particular application, it is possible to adjust $M$ to control the trade-off between error and speed.
+The MCMC-BRS smoother error approaches that of the DBRS as the number of MCMC steps, $M$, increases. However, for small $M$ the error is only very slightly larger than that of the DBRS but with significantly less running time. For a particular application, it is possible to adjust $M$ to control the trade-off between error and speed.
 
 The MCMC-BSS outperforms all the other smoothers, achieveing a lower RMSE even with $M=1$. As $M$ is increased further, the accuracy increases.
 
 
 
 \section{Conclusion} \label{sec:conclusions}
-Two new algorithms have been presented for drawing particles from the joint smoothing distribution using MCMC. The MCMC schemes have a degree of flexibility in the choice of chain length, which controls a trade-off between accuracy and running time.
+Two new algorithms have been presented for drawing particles from the joint smoothing distribution using MCMC. These MCMC schemes have a degree of flexibility in the choice of chain length, which controls a trade-off between accuracy and running time.
 
 The first algorithm resamples particles from the filtering distributions to produce particles from the smoothing distribution. The error performance of this scheme approaches that of the standard resampling scheme of \cite{Godsill2004} as the chain length increases. However, comparable error performance may be achieved with very short chains with a significant saving in processing time.
 
-The second algorithm samples new values of the state from a proposal distribution. Although slower than the resampling version for a fixed length of Markov chain, the error performance is reduced relative to the other smoothers.
+The second algorithm samples new values of the state from a continuous proposal density. Although slower than the resampling version for a given length of Markov chain, the error performance is reduced relative to the other smoothers.
 
 
 
