@@ -377,7 +377,7 @@ A good choice for the $x_k$ proposal is thus given by,
 q(x_k|x_{k-1}, \tilde{x}_{k+1}, y_k) & = & p(x_k|x_{k-1}, \tilde{x}_{k+1}, y_k)   .
 \end{IEEEeqnarray}
 
-The matching $x_{k-1}$ proposal can be approximated using the filter-smoother particles,
+The matching $x_{1:k-1}$ proposal can be approximated using the filter-smoother particles,
 %
 \begin{IEEEeqnarray}{rCl}
 q(x_{1:k-1}|y_{1:k}, \tilde{x}_{k+1}) & =       & p(x_{1:k-1}|y_{1:k}, \tilde{x}_{k+1}) \nonumber \\
@@ -389,7 +389,7 @@ q(x_{1:k-1}|y_{1:k}, \tilde{x}_{k+1}) & =       & p(x_{1:k-1}|y_{1:k}, \tilde{x}
 \tilde{v}_{k-1}^{(j)} & = & w_{k-1}^{(j)} p(y_{k}, \tilde{x}_{k+1}| x_{1:k-1}^{(j)})  .
 \end{IEEEeqnarray}
 
-The $x_k$ proposal density may be approximated with linear-Gaussian dynamics, e.g. using an extended \cite{Bar-Shalom2002} or unscented Kalman filter, \cite{Julier2004}. The weights for the $x_{k-1}$ proposal may be approximated using similar methods, but this will often be undesirable. If it is necessary to calculate proposal weights for all of the filter-smoother particles, then the computational advantages of using MCMC are lost. With this in mind, an appropriate choice for the proposal weights might be simply $\tilde{v}_{k-1}^{(j)} = w_{k-1}^{(j)}$.
+The $x_k$ proposal density may be approximated with linear-Gaussian dynamics, e.g. using an extended \cite{Bar-Shalom2002} or unscented \cite{Julier2004} Kalman filter. The weights for the $x_{1:k-1}$ proposal may be approximated using similar methods, but this will often be undesirable. If it is necessary to calculate proposal weights for all of the filter-smoother particles, then the computational advantages of using MCMC are lost. With this in mind, an appropriate choice for the proposal weights might be simply $\tilde{v}_{k-1}^{(j)} = w_{k-1}^{(j)}$.
 
 
 \section{Simulations} \label{sec:simulations}
@@ -424,7 +424,7 @@ The following algorithms were all implemented for comparison in MATLAB:
 
 The algorithms were all used to generate 100 particles from the joint smoothing distribution, using particle filters with 100 particles. Where appropriate, proposal weights were chosen to be equal to filtering weights, i.e. $v_k^{(j)} = w_k^{(j)}$. The particle filter uses the ``optimal importance distributions'' and the MCMC-BSS a ``target density proposal'' with linearisations of the observation model where appropriate.
 
-10 realisations of 500 time steps were simulated from the model and the algorithms tested on each one. Results are shown here for high and low observation noise cases. For case 1, the observation variances were set to $\sigma_B = \pi/720$ and $\sigma_R = 0.1$. For case 2, $\sigma_B = \pi/36$ and $\sigma_R = 100$. Other model settings are $\Delta t = 1$, $\sigma_P = 1$, and $x_0 = [-100, 50, 10, 0]^T$. Example trajectories and observations from the two cases are shown in Fig.~\ref{fig:example_trajectories}.
+10 realisations of 500 time steps were simulated from the model and the algorithms tested on each one. Results are shown here for high and low observation noise cases. For case 1, the observation variances were set to $\sigma_B^2 = (\pi/720)^2$ and $\sigma_R^2 = 0.1$. For case 2, $\sigma_B = (\pi/36)^2$ and $\sigma_R^2 = 100$. Other model settings are $\Delta t = 1$, $\sigma_P = 1$, and $x_0 = [-100, 50, 10, 0]^T$. Example trajectories and observations from the two cases are shown in Fig.~\ref{fig:example_trajectories}.
 
 \begin{figure}[!t]
 \centering
