@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  23 FEB 2012 09:47
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  27 FEB 2012 14:49
 entering extended mode
-**D:/pb404/MCMCSmoother/Paper/complete/finaldraft_MCMCsmoother.tex
-(D:/pb404/MCMCSmoother/Paper/complete/finaldraft_MCMCsmoother.tex
+**finaldraft_MCMCsmoother.tex
+(D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -338,102 +338,101 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 280--281
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--320
+Underfull \hbox (badness 10000) in paragraph at lines 320--322
 []\OT1/ptm/m/n/10 Using the filter-smoother ap-prox-i-ma-tion for
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 318--320
+Underfull \hbox (badness 3098) in paragraph at lines 320--322
 \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]\OMS/cmsy/m/n/10 j\OML/c
 mm/m/it/10 y[]\OT1/cmr/m/n/10 )$\OT1/ptm/m/n/10 , the MH ac-cep-tance prob-a-bi
 l-i-ties may
  []
 
-
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 355--356
+[4]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 357--358
 [][] 
  []
 
-[4]
-Underfull \hbox (badness 6978) in paragraph at lines 421--422
+[5]
+Underfull \hbox (badness 6978) in paragraph at lines 423--424
 []\OT1/ptm/m/n/10 The new MCMC back-ward re-sam-pling smoother
  []
 
-[5] <images/case1_trajectory.pdf, id=34, 289.08pt x 289.08pt>
+<images/case1_trajectory.pdf, id=33, 289.08pt x 289.08pt>
 File: images/case1_trajectory.pdf Graphic file (type pdf)
 
 <use images/case1_trajectory.pdf>
-<images/case2_trajectory.pdf, id=35, 289.08pt x 289.08pt>
+<images/case2_trajectory.pdf, id=34, 289.08pt x 289.08pt>
 File: images/case2_trajectory.pdf Graphic file (type pdf)
 
 <use images/case2_trajectory.pdf>
-Underfull \vbox (badness 1924) has occurred while \output is active []
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 447.
+(Font)              <8> on input line 449.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 447.
+(Font)              <6> on input line 449.
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--449
+Underfull \hbox (badness 10000) in paragraph at lines 451--451
 []\OT1/ptm/m/n/8 Position
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--449
+Underfull \hbox (badness 10000) in paragraph at lines 451--451
 []\OT1/ptm/m/n/8 Velocity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--449
+Underfull \hbox (badness 10000) in paragraph at lines 451--451
 []\OT1/ptm/m/n/8 Running
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--449
+Underfull \hbox (badness 10000) in paragraph at lines 451--451
 []\OT1/ptm/m/n/8 Unique
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 476--476
+Underfull \hbox (badness 10000) in paragraph at lines 478--478
 []\OT1/ptm/m/n/8 Position
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 476--476
+Underfull \hbox (badness 10000) in paragraph at lines 478--478
 []\OT1/ptm/m/n/8 Velocity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 476--476
+Underfull \hbox (badness 10000) in paragraph at lines 478--478
 []\OT1/ptm/m/n/8 Running
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 476--476
+Underfull \hbox (badness 10000) in paragraph at lines 478--478
 []\OT1/ptm/m/n/8 Unique
  []
 
 
-<images/case1_smoother_comparison_posRMSE_time.pdf, id=36, 289.08pt x 216.81pt>
+<images/case1_smoother_comparison_posRMSE_time.pdf, id=35, 289.08pt x 216.81pt>
 File: images/case1_smoother_comparison_posRMSE_time.pdf Graphic file (type pdf)
 
 <use images/case1_smoother_comparison_posRMSE_time.pdf>
-<images/case2_smoother_comparison_posRMSE_time.pdf, id=37, 289.08pt x 216.81pt>
+<images/case2_smoother_comparison_posRMSE_time.pdf, id=36, 289.08pt x 216.81pt>
 File: images/case2_smoother_comparison_posRMSE_time.pdf Graphic file (type pdf)
 
-<use images/case2_smoother_comparison_posRMSE_time.pdf> [6 <D:/pb404/MCMCSmooth
-er/Paper/complete/images/case1_trajectory.pdf> <D:/pb404/MCMCSmoother/Paper/com
-plete/images/case2_trajectory.pdf>]
+<use images/case2_smoother_comparison_posRMSE_time.pdf>
+Underfull \vbox (badness 2351) has occurred while \output is active []
+
+ [6 <D:/pb404/MCMCSmoother/Paper/complete/images/case1_trajectory.pdf> <D:/pb40
+4/MCMCSmoother/Paper/complete/images/case2_trajectory.pdf>]
 (D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.bbl
 Underfull \hbox (badness 4072) in paragraph at lines 29--32
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
 
 Missing character: There is no – in font ptmr7t!
-) [7 <D:/pb404/MCMCSmoother/Paper/complete/images/case1_smoother_comparison_pos
-RMSE_time.pdf> <D:/pb404/MCMCSmoother/Paper/complete/images/case2_smoother_comp
-arison_posRMSE_time.pdf>]
-<images/Bunch-bw.jpg, id=61, 180.675pt x 225.84375pt>
+[7 <D:/pb404/MCMCSmoother/Paper/complete/images/case1_smoother_comparison_posRM
+SE_time.pdf> <D:/pb404/MCMCSmoother/Paper/complete/images/case2_smoother_compar
+ison_posRMSE_time.pdf>]) <images/Bunch-bw.jpg, id=61, 180.675pt x 225.84375pt>
 File: images/Bunch-bw.jpg Graphic file (type jpg)
 
 <use images/Bunch-bw.jpg>
@@ -446,19 +445,17 @@ File: images/Godsill.jpg Graphic file (type jpg)
 
 <use images/Godsill.jpg>
 Missing character: There is no ’ in font ptmr7t!
- [8
-
- <D:/pb404/MCMCSmoother/Paper/complete/images/Bunch-bw.jpg> <D:/pb404/MCMCSmoot
-her/Paper/complete/images/Godsill.jpg>]
+ [8 <D:/pb404/MCMCSmoother/Paper/complete/images/Bunch-bw.jpg> <D:/pb404/MCMCSm
+oother/Paper/complete/images/Godsill.jpg>]
 (D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.aux) ) 
 Here is how much of TeX's memory you used:
  3743 strings out of 494019
  55989 string characters out of 3143883
- 131174 words of memory out of 3000000
+ 139174 words of memory out of 3000000
  6989 multiletter control sequences out of 15000+200000
  45811 words of font info for 83 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 36i,21n,45p,837b,550s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,21n,45p,1112b,550s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program
  Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/M
@@ -477,7 +474,7 @@ fonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utm
 b8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finaldraft_MCMCsmoother.pdf (8 pages, 390766 bytes).
+Output written on finaldraft_MCMCsmoother.pdf (8 pages, 392839 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
