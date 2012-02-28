@@ -75,6 +75,11 @@ R.~Douc, O.~Cappe, and E.~Moulines, ``Comparison of resampling schemes for
   particle filtering,'' in \emph{Proc. 4th Int. Symp. Image and Signal
   Processing and Analysis}, 2005.
 
+\bibitem{Douc2009}
+R.~Douc, A.~Garivier, E.~Moulines, and J.~Olsson, ``On the forward filtering
+  backward smoothing particle approximations of the smoothing distribution in
+  general state spaces models,'' \emph{Arxiv preprint}, 2009.
+
 \bibitem{Klaas2006}
 M.~Klaas, M.~Briers, N.~de~Freitas, A.~Doucet, S.~Maskell, and D.~Lang, ``Fast
   particle smoothing: {If I} had a million particles,'' in \emph{Proc. 23rd

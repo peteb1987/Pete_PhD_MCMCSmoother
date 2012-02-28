@@ -31,8 +31,16 @@
 @INPROCEEDINGS{Douc2005,
   author = {Douc, R. and Cappe, O. and Moulines, E.},
   title = {Comparison of resampling schemes for particle filtering},
-  booktitle = {Proc. 4th Int. Symp. on Image and Signal Processing and Analysis},
+  booktitle = {Proc. 4th Int. Symp. Image and Signal Processing and Analysis},
   year = {2005}
+}
+
+@ARTICLE{Douc2009,
+  author = {Douc, R. and Garivier, A. and Moulines, E. and Olsson, J.},
+  title = {On the Forward Filtering Backward Smoothing particle approximations
+	of the smoothing distribution in general state spaces models},
+  journal = {Arxiv preprint},
+  year = {2009}
 }
 
 @ARTICLE{Doucet2000a,
@@ -130,50 +138,16 @@
   journal = {Journal of Computational and Graphical Statistics},
   year = {1996},
   volume = {5},
-  pages = {pp. 1-25},
-  number = {1},
-  abstract = {A new algorithm for the prediction, filtering, and smoothing of non-Gaussian
-	nonlinear state space models is shown. The algorithm is based on
-	a Monte Carlo method in which successive prediction, filtering (and
-	subsequently smoothing), conditional probability density functions
-	are approximated by many of their realizations. The particular contribution
-	of this algorithm is that it can be applied to a broad class of nonlinear
-	non-Gaussian higher dimensional state space models on the provision
-	that the dimensions of the system noise and the observation noise
-	are relatively low. Several numerical examples are shown.},
-  copyright = {Copyright © 1996 American Statistical Association, Institute of Mathematical
-	Statistics and Interface Foundation of America},
-  file = {Kitagawa1996.pdf:Kitagawa1996.pdf:PDF},
-  issn = {10618600},
-  jstor_articletype = {research-article},
-  jstor_formatteddate = {Mar., 1996},
-  language = {English},
-  owner = {pb404},
-  publisher = {American Statistical Association, Institute of Mathematical Statistics,
-	and Interface Foundation of America},
-  timestamp = {2011.07.20},
-  url = {http://www.jstor.org/stable/1390750}
+  pages = {1-25}
 }
 
 @INPROCEEDINGS{Klaas2006,
   author = {Klaas, Mike and Briers, Mark and de Freitas, Nando and Doucet, Arnaud
 	and Maskell, Simon and Lang, Dustin},
   title = {Fast particle smoothing: {If I} had a million particles},
-  booktitle = {Proceedings of the 23rd international conference on Machine learning},
+  booktitle = {Proc. 23rd Int. Conf. Machine learning},
   year = {2006},
-  series = {ICML '06},
-  pages = {481--488},
-  address = {New York, NY, USA},
-  publisher = {ACM},
-  acmid = {1143905},
-  doi = {http://doi.acm.org/10.1145/1143844.1143905},
-  file = {Klaas2006.pdf:Klaas2006.pdf:PDF},
-  isbn = {1-59593-383-2},
-  location = {Pittsburgh, Pennsylvania},
-  numpages = {8},
-  owner = {pb404},
-  timestamp = {2010.12.14},
-  url = {http://doi.acm.org/10.1145/1143844.1143905}
+  pages = {481-488}
 }
 
 @ARTICLE{Pitt1999,
@@ -182,21 +156,7 @@
   journal = {Journal of the American Statistical Association},
   year = {1999},
   volume = {94},
-  pages = {pp. 590-599},
-  number = {446},
-  abstract = {This article analyses the recently suggested particle approach to
-	filtering time series. We suggest that the algorithm is not robust
-	to outliers for two reasons: the design of the simulators and the
-	use of the discrete support to represent the sequentially updating
-	prior distribution. Here we tackle the first of these problems.},
-  copyright = {Copyright © 1999 American Statistical Association},
-  file = {Pitt1999.pdf:Pitt1999.pdf:PDF},
-  issn = {01621459},
-  language = {English},
-  owner = {pb404},
-  publisher = {American Statistical Association},
-  timestamp = {2011.01.14},
-  url = {http://www.jstor.org/stable/2670179}
+  pages = {590-599}
 }
 
 @ARTICLE{Rauch1965,
@@ -205,10 +165,6 @@
   journal = {AIAA journal},
   year = {1965},
   volume = {3},
-  pages = {1445--1450},
-  number = {8},
-  file = {Rauch1965.pdf:Rauch1965.pdf:PDF},
-  owner = {pb404},
-  timestamp = {2011.07.19}
+  pages = {1445-1450}
 }
 
