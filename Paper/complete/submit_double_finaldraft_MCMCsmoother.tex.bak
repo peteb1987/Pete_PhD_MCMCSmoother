@@ -1,4 +1,4 @@
-\documentclass[journal,final]{IEEEtran}
+\documentclass[10pt,twocolumn,twoside]{IEEEtran}
 
 %% Packages
 \usepackage{cite}
@@ -30,7 +30,7 @@ of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-t
 \thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
 
 % The paper headers
-\markboth{IEEE Transactions on Signal Processing,~Vol.~1, No.~1, January~1901}%
+\markboth{IEEE Transaction in Signal Processing,~Vol.~1, No.~1, January~1901}%
 {Bunch \& Godsill: Improved Particle Approximations to the Joint Smoothing Distribution Using Markov Chain Monte Carlo}
 
 % make the title area

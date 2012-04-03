@@ -1,7 +1,8 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  3 APR 2012 12:46
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  3 APR 2012 14:02
 entering extended mode
-**finaldraft_MCMCsmoother.tex
-(D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.tex
+**submit_double_finaldraft_MCMCsmoother.tex
+
+(D:\pb404\MCMCSmoother\Paper\complete\submit_double_finaldraft_MCMCsmoother.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -273,7 +274,8 @@ LaTeX Info: The control sequence `\]' is already robust on input line 472.
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-(D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.aux)
+(D:\pb404\MCMCSmoother\Paper\complete\submit_double_finaldraft_MCMCsmoother.aux
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
@@ -286,8 +288,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count118
 \scratchdimen=\dimen146
@@ -424,7 +425,8 @@ Underfull \vbox (badness 2351) has occurred while \output is active []
 
  [6 <D:/pb404/MCMCSmoother/Paper/complete/images/case1_trajectory.pdf> <D:/pb40
 4/MCMCSmoother/Paper/complete/images/case2_trajectory.pdf>]
-(D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.bbl
+(D:\pb404\MCMCSmoother\Paper\complete\submit_double_finaldraft_MCMCsmoother.bbl
+
 Underfull \hbox (badness 4072) in paragraph at lines 29--32
 []\OT1/ptm/m/n/8 N. Gor-don, D. Salmond, and A. Smith, ``Novel ap-proach to
  []
@@ -432,54 +434,40 @@ Underfull \hbox (badness 4072) in paragraph at lines 29--32
 Missing character: There is no – in font ptmr7t!
 [7 <D:/pb404/MCMCSmoother/Paper/complete/images/case1_smoother_comparison_posRM
 SE_time.pdf> <D:/pb404/MCMCSmoother/Paper/complete/images/case2_smoother_compar
-ison_posRMSE_time.pdf>]) (D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex
-<D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg, id=61, 180.675pt x 225.84375pt>
-File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
-<use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>
-File: D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg Graphic file (type jpg)
+ison_posRMSE_time.pdf>]) [8
 
-<use D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg>)
-(D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex
-<D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg, id=64, 953.5625pt x 1204.5pt>
-File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
-
-<use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
-File: D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg Graphic file (type jpg)
-
-<use D:/pb404/Dropbox/PhD/Biographies/Godsill.jpg>
-Missing character: There is no ’ in font ptmr7t!
-) [8 <D:/pb404/Dropbox/PhD/Biographies/Bunch-bw.jpg> <D:/pb404/Dropbox/PhD/Biog
-raphies/Godsill.jpg>]
-(D:\pb404\MCMCSmoother\Paper\complete\finaldraft_MCMCsmoother.aux) ) 
+]
+(D:\pb404\MCMCSmoother\Paper\complete\submit_double_finaldraft_MCMCsmoother.aux
+) ) 
 Here is how much of TeX's memory you used:
- 3752 strings out of 494019
- 56452 string characters out of 3143883
- 144186 words of memory out of 3000000
- 6991 multiletter control sequences out of 15000+200000
- 45811 words of font info for 83 fonts, out of 3000000 for 9000
+ 3733 strings out of 494019
+ 55947 string characters out of 3143883
+ 144258 words of memory out of 3000000
+ 6983 multiletter control sequences out of 15000+200000
+ 44704 words of font info for 82 fonts, out of 3000000 for 9000
  717 hyphenation exceptions out of 8191
- 36i,21n,45p,1104b,550s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program
- Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utm
-b8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finaldraft_MCMCsmoother.pdf (8 pages, 394764 bytes).
+ 36i,21n,45p,1118b,550s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
+utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb
+><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on submit_double_finaldraft_MCMCsmoother.pdf (8 pages, 241758 by
+tes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
+ 118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 55 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

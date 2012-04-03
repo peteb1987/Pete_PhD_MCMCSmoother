@@ -4,8 +4,8 @@ global params;
 params.dt = 1;
 params.N = 100;
 params.proc_var = 1;
-params.bng_var = (pi/720)^2;    % Try (pi/720)^2; (pi/180)^2;
-params.rng_var = 0.1;           % Try 0.1;        10;
+params.bng_var = (pi/36)^2;    % Try (pi/720)^2; (pi/180)^2;
+params.rng_var = 100;           % Try 0.1;        10;
 params.x0 = [-100; 50; 10; 0];
 
 % Prior

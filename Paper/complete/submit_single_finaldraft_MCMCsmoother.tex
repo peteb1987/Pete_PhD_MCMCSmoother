@@ -1,4 +1,4 @@
-\documentclass[journal,final]{IEEEtran}
+\documentclass[peerreview,11pt,draftcls,onecolumn]{IEEEtran}
 
 %% Packages
 \usepackage{cite}
@@ -23,15 +23,15 @@
 
 \title{Improved Particle Approximations \\ to the Joint Smoothing Distribution \\ Using Markov Chain Monte Carlo}
 
-\author{Pete~Bunch,~\IEEEmembership{Member,~IEEE,} and
+\author{Pete~Bunch*,~\IEEEmembership{Member,~IEEE,} and
         Simon~Godsill,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
 \thanks{P. Bunch and S. Godsill are with the Department
 of Engineering, Cambridge University, UK. email: \{pb404,sjg30\}@cam.ac.uk}% <-this % stops a space
-\thanks{Manuscript received January 01, 1901; revised January 02, 1901.}}
+\thanks{Manuscript received April 03, 2012.}}
 
-% The paper headers
-\markboth{IEEE Transactions on Signal Processing,~Vol.~1, No.~1, January~1901}%
-{Bunch \& Godsill: Improved Particle Approximations to the Joint Smoothing Distribution Using Markov Chain Monte Carlo}
+%% The paper headers
+%\markboth{IEEE Transactions on Signal Processing,~Vol.~AA, No.~BB, January~YYYY}%
+%{MCMC Particle Smoothing Approximations}
 
 % make the title area
 \maketitle
@@ -43,9 +43,20 @@ Particle filtering and smoothing algorithms approximate posterior state distribu
 
 
 
-\begin{IEEEkeywords}
-state space model, particle filter, smoothing, MCMC, Bayesian inference
-\end{IEEEkeywords}
+%\begin{IEEEkeywords}
+%state space model, particle filter, smoothing, MCMC, Bayesian inference
+%\end{IEEEkeywords}
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+
+\ifCLASSOPTIONpeerreview
+\begin{center} \bfseries EDICS Categories: MLR-BAYL, SSP-NGAU, SSP-TRAC, SSP-FILT \end{center}
+\fi
+
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
 
 
 
@@ -432,10 +443,9 @@ The algorithms were all used to generate 100 particles from the joint smoothing 
 
 \begin{figure}[!t]
 \centering
-\subfloat[Case 1]{\includegraphics[width=0.9\columnwidth]{case1_trajectory.pdf}%
+\subfloat[Case 1]{\includegraphics[width=0.4\columnwidth]{case1_trajectory.pdf}%
 \label{fig_first_case}}
-\\
-\subfloat[Case 2]{\includegraphics[width=0.9\columnwidth]{case2_trajectory.pdf}%
+\subfloat[Case 2]{\includegraphics[width=0.4\columnwidth]{case2_trajectory.pdf}%
 \label{fig_second_case}}
 \caption{Example trajectory with observations from the two noise covariance cases.}
 \label{fig:example_trajectories}
@@ -499,9 +509,8 @@ MCMC-BSS (100)& 5.34 & 1.68 & 471 & 91.8 \\
 
 \begin{figure}[!t]
 \centering
-\subfloat[Case 1]{\includegraphics[width=0.9\columnwidth]{case1_smoother_comparison_posRMSE_time.pdf}}
-\\
-\subfloat[Case 2]{\includegraphics[width=0.9\columnwidth]{case2_smoother_comparison_posRMSE_time.pdf}}
+\subfloat[Case 1]{\includegraphics[width=0.4\columnwidth]{case1_smoother_comparison_posRMSE_time.pdf}}
+\subfloat[Case 2]{\includegraphics[width=0.4\columnwidth]{case2_smoother_comparison_posRMSE_time.pdf}}
 \caption{Position RMSEs and running times of various smoothing algorithms with different noise covariance cases.}%
 \label{fig:rmse_vs_time}%
 \end{figure}
@@ -536,10 +545,10 @@ The second algorithm samples new values of the state from a continuous proposal 
 \bibliographystyle{IEEEtran}
 \bibliography{D:/pb404/Dropbox/PhD/Cleanbib}
 
-\newpage
+%\newpage
 
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
-\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Bunch.tex}
+%\input{D:/pb404/Dropbox/PhD/Biographies/IEEE-Godsill.tex}
 
 \end{document}
 
