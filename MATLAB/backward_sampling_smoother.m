@@ -1,4 +1,4 @@
-function [ smooth_pts ] = backard_sampling_smoother( S, times, pts_array, wts_array, h_trans )
+function [ smooth_pts ] = backward_sampling_smoother( S, times, pts_array, wts_array, h_trans )
 %BACKARD_SAMPLING_SMOOTHER Normal Godsill2004-type backward sampling
 %smoother.
 %

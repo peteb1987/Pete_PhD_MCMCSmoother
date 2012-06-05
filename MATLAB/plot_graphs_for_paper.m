@@ -1,7 +1,7 @@
 clup
 
 % Set test flag
-for test_flag = [1,3];
+for test_flag = [1,2,3];
     
     test_case = test_flag;
     if test_flag == 3
@@ -11,6 +11,7 @@ for test_flag = [1,3];
     % Load data
     load(['smoother_test' num2str(test_flag) '.mat']);
     
+    % RMSEs
     fig = figure; hold on
     inds = 2; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), 'ok', 'markersize', 7 )
     inds = 3; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), 'r^', 'markersize', 7 )
@@ -25,9 +26,24 @@ for test_flag = [1,3];
     plot([0 0], ylimits, ':k');
     ylim(ylimits);
     
-    wid = 4; hei = 3;
-    format_graph_for_pdf;
-    print(fig, '-dpdf', ['case' num2str(test_case) '_smoother_comparison_posRMSE_time.pdf']);
+    export_pdf(fig, ['case' num2str(test_case) '_smoother_comparison_posRMSE_time.pdf']);
+    
+    % MNEESs
+    fig = figure; hold on
+    inds = 2; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_nees, results(inds)), 'ok', 'markersize', 7 )
+    inds = 3; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_nees, results(inds)), 'r^', 'markersize', 7 )
+    inds = 4:8; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_nees, results(inds)), '*-b', 'markersize', 7 )
+    inds = 9:13; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_nees, results(inds)), 'x-.g', 'markersize', 7 )
+    
+    legend('FS', 'DBRS', 'MCMC-BRS (M=1-100)', 'MCMC-BSS (M=1-100)');
+    xlabel('Running Time (s)'); ylabel('MNEES');
+    xlimits = get(gca, 'XLim');
+    ylimits = get(gca, 'YLim');
+    xlim([-50, xlimits(2)]);
+    plot([0 0], ylimits, ':k');
+    ylim(ylimits);
+    
+    export_pdf(fig, ['case' num2str(test_case) '_smoother_comparison_MNEES_time.pdf']);
     
     %%% Trajectories
     
@@ -45,8 +61,8 @@ for test_flag = [1,3];
         params.bng_var = (pi/720)^2;
         params.rng_var = 0.1;
     elseif test_flag == 2
-        params.bng_var = (pi/180)^2;
-        params.rng_var = 10;
+        params.bng_var = (pi/36)^2;
+        params.rng_var = 0.1;
     elseif test_flag == 3
         params.bng_var = (pi/36)^2;
         params.rng_var = 100;
@@ -64,13 +80,16 @@ for test_flag = [1,3];
     legend('Target Position', 'Observations', 'Location', 'SouthWest')
     xlabel('x coordinate'); ylabel('y coordinate');
     
+    % Add some covariance ellipses
+    plot_banana( gcf, x(:,1), params.rng_var, params.bng_var, 2 )
+    plot_banana( gcf, x(:,end), params.rng_var, params.bng_var, 2 )
+    
     xlim([-300, 50]);
     ylim([-50, 300]);
     
-    wid = 4; hei = 4;
-    format_graph_for_pdf;
-    pos = get(gca, 'Position');
-    set(gca, 'Position', [pos(1), pos(2), pos(3), pos(3)]);
-    print(fig, '-dpdf', ['case' num2str(test_case) '_trajectory.pdf']);
+    export_pdf(fig, ['case' num2str(test_case) '_trajectory.pdf'], 4, 4, 'inches');
+    
+%     pos = get(gca, 'Position');
+%     set(gca, 'Position', [pos(1), pos(2), pos(3), pos(3)]);
     
 end

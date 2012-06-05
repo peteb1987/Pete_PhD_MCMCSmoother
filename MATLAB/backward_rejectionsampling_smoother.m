@@ -52,7 +52,7 @@ for ii = 1:S
             
         end
         
-        count
+%         count
         
         % Update trajectory
         smooth_pts{ii} = [pts_array{kk}{ind}(:,1:kk) smooth_pts{ii}(:,kk+1:end)];
