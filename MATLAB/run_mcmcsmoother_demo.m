@@ -2,7 +2,7 @@ clup
 dbstop if error
 
 % DEFINE RANDOM SEED
-rand_seed = 8;
+rand_seed = 10;
 
 % Set random seed
 s = RandStream('mt19937ar', 'seed', rand_seed);

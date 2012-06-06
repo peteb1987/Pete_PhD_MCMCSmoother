@@ -70,11 +70,6 @@ M.~K. Pitt and N.~Shephard, ``Filtering via simulation: Auxiliary particle
   filters,'' \emph{Journal of the American Statistical Association}, vol.~94,
   pp. 590--599, 1999.
 
-\bibitem{Douc2005}
-R.~Douc, O.~Cappe, and E.~Moulines, ``Comparison of resampling schemes for
-  particle filtering,'' in \emph{Proc. 4th Int. Symp. Image and Signal
-  Processing and Analysis}, 2005.
-
 \bibitem{Douc2009}
 R.~Douc, A.~Garivier, E.~Moulines, and J.~Olsson, ``On the forward filtering
   backward smoothing particle approximations of the smoothing distribution in
@@ -102,10 +97,16 @@ C.~Dubarry and R.~Douc, ``Particle approximation improvement of the joint
   smoothing distribution with on-the-fly variance estimation,'' 2011, arxiv
   preprint arXiv:1107.5524.
 
+\bibitem{Gilks2001}
+W.~R. Gilks and C.~Berzuini, ``Following a moving target -- {Monte Carlo}
+  inference for dynamic {Bayesian} models,'' \emph{Journal of the Royal
+  Statistical Society: Series B (Statistical Methodology)}, vol.~63, pp.
+  127--146, 2001.
+
 \bibitem{geman1984}
 S.~Geman and D.~Geman, ``{Gibbs} distributions, and the {Bayesian} restoration
-  of images,'' \emph{IEEE Transactions on Pattern Analysis and Machine
-  Intelligence}, vol.~6, pp. 721--741, 1984.
+  of images,'' \emph{IEEE Trans. Pattern Analysis and Machine Intelligence},
+  vol.~6, pp. 721--741, 1984.
 
 \bibitem{Grewal2002}
 M.~S. Grewal and A.~P. Andrews, \emph{Kalman filtering: Theory and practice

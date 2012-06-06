@@ -3,10 +3,10 @@ dbstop if error
 
 % Get test flag
 % test_flag = str2double(getenv('SGE_TASK_ID'));
-test_flag = 1;
+test_flag = 3;
 
 % Batch test parameters
-num_seed = 10;
+num_seed = 100;
 set_batch_parameters;
 
 % Set test-specific parameters

@@ -14,7 +14,7 @@ for kk = 1:K
 %     est_P(:,:,kk) = cov(squeeze(pts_x(:,kk,:))');
     innov = bsxfun(@minus, squeeze(pts_x(:,kk,:)), x(:,kk));
     est_P(:,:,kk) = (1/Np)*innov*(innov');
-    if all(all(~diff(innov')))
+    if det(est_P(:,:,kk))<1E-10  %all(all(~diff(innov')))  %
         error(kk) = 1;
     else
         error(kk) = ((est_x(:,kk)-x(:,kk))'/est_P(:,:,kk))*(est_x(:,kk)-x(:,kk));
@@ -23,6 +23,8 @@ end
 
 nees = sum(error)/K;
 nees_over_time = error;
+
+assert(~isnan(nees));
 
 end
 
