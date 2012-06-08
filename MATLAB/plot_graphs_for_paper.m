@@ -4,9 +4,6 @@ clup
 for test_flag = [1,2,3];
     
     test_case = test_flag;
-    if test_flag == 3
-        test_case = 2;
-    end
     
     % Load data
     load(['smoother_test' num2str(test_flag) '.mat']);
@@ -18,7 +15,7 @@ for test_flag = [1,2,3];
     inds = 4:8; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), '*-b', 'markersize', 7 )
     inds = 9:13; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_pos_rmse, results(inds)), 'x-.g', 'markersize', 7 )
     
-    legend('FS', 'DBRS', 'MCMC-BRS (M=1-100)', 'MCMC-BSS (M=1-100)');
+    legend('FS', 'D-FFBS', 'MH-FFBS (M=1-100)', 'MH-FFBP (M=1-100)');
     xlabel('Running Time (s)'); ylabel('Position RMSE');
     xlimits = get(gca, 'XLim');
     ylimits = get(gca, 'YLim');
@@ -35,15 +32,15 @@ for test_flag = [1,2,3];
     inds = 4:8; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_nees, results(inds)), '*-b', 'markersize', 7 )
     inds = 9:13; plot( cellfun(@(x) x.times, results(inds)), cellfun(@(x) x.mean_nees, results(inds)), 'x-.g', 'markersize', 7 )
     
-    legend('FS', 'DBRS', 'MCMC-BRS (M=1-100)', 'MCMC-BSS (M=1-100)');
-    xlabel('Running Time (s)'); ylabel('MNEES');
+    legend('FS', 'D-FFBS', 'MH-FFBS (M=1-100)', 'MH-FFBP (M=1-100)');
+    xlabel('Running Time (s)'); ylabel('ENEES');
     xlimits = get(gca, 'XLim');
-    ylimits = get(gca, 'YLim');
+    ylimits = [0.75 1];
     xlim([-50, xlimits(2)]);
     plot([0 0], ylimits, ':k');
     ylim(ylimits);
     
-    export_pdf(fig, ['case' num2str(test_case) '_smoother_comparison_MNEES_time.pdf']);
+    export_pdf(fig, ['case' num2str(test_case) '_smoother_comparison_ENEES_time.pdf']);
     
     %%% Trajectories
     
@@ -92,4 +89,15 @@ for test_flag = [1,2,3];
 %     pos = get(gca, 'Position');
 %     set(gca, 'Position', [pos(1), pos(2), pos(3), pos(3)]);
     
+end
+
+%%
+
+resstruct = cell2mat(results);
+table = [[resstruct.mean_pos_rmse]', [resstruct.mean_vel_rmse]', [resstruct.mean_nees]', [resstruct.times]', mean(cat(1,resstruct.unique_pts),2)];
+for line = 2:size(table, 1);
+    fprintf(1, '%.2f & %.2f & %.2f & %.2f & %.2f \\\\ \n', table(line,:));
+    if any(line==[3,8])
+        fprintf(1, '\n');
+    end
 end

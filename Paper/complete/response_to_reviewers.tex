@@ -1,0 +1,151 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{IEEEtrantools}
+\usepackage{color}
+
+\newenvironment{meta}[0]{\color{red} \em}{}
+
+\begin{document}
+
+
+{\meta Since submitting this paper, we've discovered a related piece of work, ``Particle approximation improvement of the
+joint smoothing distribution with on-the-fly variance estimation'' by Dubarry and Douc. This is available as an arXiv preprint (arXiv:1107.5524) http://arxiv.org/abs/1107.5524 . The algorithm it contains shares some characteristics with our backwards proposing smoother. We've added a reference in section IV, along with a brief comparison.  }
+
+Reviewer Comments:
+
+Reviewer: 1
+
+Recommendation: AQ - Publish In Minor, Required Changes
+
+Comments:
+An improved particle filtering approach using MCMC is proposed in this paper. The work is novel and the paper is pleasant to read. Some minor points are listed here for consideration.
+
+1) Make sure that paragraphs are properly used. Quite a lot of paragraphs can be merged, e.g., line 42 on page 2.
+{\meta I've merged a few, but I like to have a separate paragraph for each point I make. I consider this a matter of taste. }
+
+2) Check all punctuation symbols.
+{\meta Done. Yes. Whoops.}
+
+3) Algorithm initialization is not clear in simulations.
+{\meta Added a sentence about this.}
+
+4) Reorganize section IV, if necessary.
+{\meta I think it is fine.}
+
+Additional Questions:
+1. Is the topic appropriate for publication in these transactions?: Yes
+
+2. Is the topic important to colleagues working in the field?: Yes
+
+Explain:
+
+1. Is the paper technically sound?: Yes
+
+why not?:
+
+2. Is the coverage of the topic sufficiently comprehensive and balanced?: Yes
+
+3. How would you describe technical depth of paper?: Appropriate for the Generally Knowledgeable Individual Working in the Field or a Related Field
+
+4. How would you rate the technical novelty of the paper?: Novel
+
+1. How would you rate the overall organization of the paper?: Could be improved
+
+2. Are the title and abstract satisfactory?: Yes
+
+Explain:
+
+3. Is the length of the paper appropriate? If not, recommend how the length of the paper should be amended, including a possible target length for the final manuscript.: Yes
+
+4. Are symbols, terms, and concepts adequately defined?: Yes
+
+5. How do you rate the English usage? : Needs improvement
+
+6. Rate the Bibliography: Satisfactory
+
+null:
+
+1. How would you rate the technical contents of the paper?: Good
+
+2. How would you rate the novelty of the paper?: Sufficiently Novel
+
+3. How would you rate the "literary" presentation of the paper?: Totally Accessible
+
+4. How would you rate the appropriateness of this paper for publication in this IEEE Transactions?: Excellent Match
+
+
+Reviewer: 2
+
+Recommendation: RQ - Review Again After Major Changes
+
+Comments:
+This has the makings of a really nice paper. However, I am bothered by a few things and I think addressing these could transform the paper from being slightly interesiting (as it is) to really great (as it could be).
+
+1) I'm bothered that the authors seem to have a very different view of [13] to me. Certainly, the comments about [13] are probably based on the authors' experience, in which case the text should be softened a little to say so. It would be even better if the techniques in [13] were included in the analysis: the point of [13] (as I understand it) was to change the scaling of the computational complexity, which is clearly a key part of the approach described in the current submission. Exlcuding such a comparison only devalues the submission.
+
+{\meta An interesting point. Our glib dismissal of the this reference is definitely inappropriate given the subject matter, and the reasoning was wrong. However, if I understand correctly, the methods in this paper revolve around fast approximation of summation of function values over a particle population. They are, therefore, tailored towards algorithms for marginal smoothing. For the joint smoothing task considered in our paper, we need to sample from these particle populations, and this is the basis on which we do not consider these fast approximations further. The text has been modified to this effect. }
+
+2) The RMSE results are not very convincing: the differences are small. Indeed, the results could be more convincing: specifically, using NEES (alongside RMSE) would be a good way to downplay the small differences in RMSE and upplay the differences in the number of unique particles in terms of a performance metric that "matters".
+
+{\meta Yes. Very true. A proper NEES score would require us to know the true posterior means and covariances. Since we can't calculate these for a nonlinear model, I've used an empirical form - details in the paper. }
+
+3) The values used in the two cases for the bearing and range accuracy aren't actually that different in their nature. Indeed the cases differ in terms of the absolute value of the noise, but not (much) in its correlation structure. Changing the absolute value of the noise alters the implicit time constant associated with the posterior. I accept that this is interesting since it stresses the ability of the smoother to explore the space. However, the interesting bit about the bearing and range likelihood is when the likleihood function becomes heavily skewed (ie "banana" shaped). Adding a case with a different degree of skewness (eg using $\sigma_B^2 = (\pi/36)^2$ and $\sigma_R^2 = 0.1$) would be really interesting and would strengthen the paper.
+
+{\meta Ok. Done. }
+
+I also spotted a few bits of niff-naff-and-trivia that the authors could sensibly (and easily) address:
+1) "using the a Rauch-Tung-Striebel (RTS) smoother" -> "using the Rauch-Tung-Striebel (RTS) smoother" (typo)
+2) The first line of (7) is slightly non-standard and results in the approximation in the final line. It would be better if a full path was considered such that equalities alone were used.
+
+{\meta The approximation is a typo. It was actually intentional not to use the full path, to emphasise the difference between the filter and the filter-smoother. By marginalising $x_{n-1}$ after each step, we get the same filter output as if we used the full path. }
+
+3)  "backwards-resampling" is a really misleading name given the use of "resampling" in the (forwards) particle filter. Why not call it "backwards-resimulation"? I realise that this would be a new term, but it might be helpful to distinguish "resampling" and "resampling"!!
+
+{\meta Yes. I was worried about this myself. I've renamed all the algorithms. }
+
+Additional Questions:
+1. Is the topic appropriate for publication in these transactions?: Yes
+
+2. Is the topic important to colleagues working in the field?: Yes
+
+Explain:
+
+1. Is the paper technically sound?: Yes
+
+why not?:
+
+2. Is the coverage of the topic sufficiently comprehensive and balanced?: Important Information is missing or superficially treated.
+
+3. How would you describe technical depth of paper?: Appropriate for the Generally Knowledgeable Individual Working in the Field or a Related Field
+
+4. How would you rate the technical novelty of the paper?: Novel
+
+1. How would you rate the overall organization of the paper?: Satisfactory
+
+2. Are the title and abstract satisfactory?: Yes
+
+Explain:
+
+3. Is the length of the paper appropriate? If not, recommend how the length of the paper should be amended, including a possible target length for the final manuscript.: Yes
+
+4. Are symbols, terms, and concepts adequately defined?: Yes
+
+5. How do you rate the English usage? : Satisfactory
+
+6. Rate the Bibliography: Satisfactory
+
+null:
+
+1. How would you rate the technical contents of the paper?: Good
+
+2. How would you rate the novelty of the paper?: Sufficiently Novel
+
+3. How would you rate the "literary" presentation of the paper?: Totally Accessible
+
+4. How would you rate the appropriateness of this paper for publication in this IEEE Transactions?: Excellent Match
+
+
+
+
+\end{document}

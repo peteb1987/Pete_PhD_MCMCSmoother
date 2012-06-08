@@ -148,7 +148,7 @@ for rs = 1:num_seed;
     
 end
 
-% Average and store
+%% Average and store
 results = cell(NA,1);
 for alg = 1:NA
     results{alg}.mean_pos_rmse = mean(mean_pos_rmse{alg});
@@ -158,4 +158,5 @@ for alg = 1:NA
     results{alg}.times = mean(times{alg});
 end
 
-save(['smoother_test' num2str(test_flag) '.mat'], 'results', 'params');
+%%
+save(['smoother_test' num2str(test_flag) '.mat'], 'results', 'times', 'unique_pts', 'mean_pos_rmse', 'mean_vel_rmse', 'mean_nees', 'params');

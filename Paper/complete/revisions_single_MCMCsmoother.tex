@@ -1,4 +1,4 @@
-\documentclass[10pt,twocolumn,twoside]{IEEEtran}
+\documentclass[peerreview,11pt,draftcls,onecolumn]{IEEEtran}
 
 %% Packages
 \usepackage{cite}
@@ -19,7 +19,7 @@
 \newenvironment{meta}[0]{\color{red} \em}{}
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+\hyphenation{}
 
 
 \begin{document}
@@ -46,9 +46,18 @@ Particle filtering and smoothing algorithms approximate posterior state distribu
 
 
 
-\begin{IEEEkeywords}
-state space model, particle filter, smoothing, MCMC, Bayesian inference
-\end{IEEEkeywords}
+%\begin{IEEEkeywords}
+%state space model, particle filter, smoothing, MCMC, Bayesian inference
+%\end{IEEEkeywords}
+
+\ifCLASSOPTIONpeerreview
+\begin{center} \bfseries EDICS Categories: MLR-BAYL, SSP-NGAU, SSP-TRAC, SSP-FILT \end{center}
+\fi
+
+\newpage
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
 
 
 
@@ -402,11 +411,11 @@ The algorithms were all used to generate 100 particles from the joint smoothing 
 
 \begin{figure}[!t]
 \centering
-\subfloat[Case 1]{\includegraphics[width=0.9\columnwidth]{case1_trajectory.pdf}}
+\subfloat[Case 1]{\includegraphics[width=0.45\columnwidth]{case1_trajectory.pdf}}
 \\
-\subfloat[Case 2]{\includegraphics[width=0.9\columnwidth]{case2_trajectory.pdf}}
+\subfloat[Case 2]{\includegraphics[width=0.45\columnwidth]{case2_trajectory.pdf}}
 \\
-\subfloat[Case 3]{\includegraphics[width=0.9\columnwidth]{case3_trajectory.pdf}}
+\subfloat[Case 3]{\includegraphics[width=0.45\columnwidth]{case3_trajectory.pdf}}
 \caption{Example trajectory with observations from the two noise covariance cases. Constant likelihood contours are shown for the first and last position (dashed)}
 \label{fig:example_trajectories}
 \end{figure}
@@ -426,7 +435,7 @@ The performances of the various smoothing algorithms are compared using a number
 \caption{Smoother performance measures for noise covariance case 1. All results are averaged over 100 runs, with 500 time steps in each run.}
 \label{tab:case1_performance}
 {\scriptsize
-\centering
+\begin{center}
 \begin{tabular}{|c||c|c|c|c|c|}
 \hline
 Algorithm & \begin{minipage}[c]{0.9cm} Position RMSE \end{minipage} & \begin{minipage}[c]{0.9cm}  Velocity RMSE \end{minipage} & \begin{minipage}[c]{0.9cm}  ENEES \end{minipage} & \begin{minipage}[c]{0.9cm}  Running Time (s) \end{minipage} & \begin{minipage}[c]{0.9cm}  Unique Particles \end{minipage} \\
@@ -446,8 +455,8 @@ MH-FFBP (10)   & 0.43 & 0.72 & 0.78 & 54.33 & 90.10 \\
 MH-FFBP (30)   & 0.42 & 0.71 & 0.79 & 154.47 & 96.89 \\
 MH-FFBP (100)  & 0.42 & 0.70 & 0.79 & 504.58 & 98.53 \\
 \hline
-
 \end{tabular}
+\end{center}
 }
 \end{table}
 
@@ -456,7 +465,7 @@ MH-FFBP (100)  & 0.42 & 0.70 & 0.79 & 504.58 & 98.53 \\
 \caption{Smoother performance measures for noise covariance case 2. All results are averaged over 100 runs, with 500 time steps in each run.}
 \label{tab:case2_performance}
 {\scriptsize
-\centering
+\begin{center}
 \begin{tabular}{|c||c|c|c|c|c|}
 \hline
 Algorithm & \begin{minipage}[c]{0.9cm} Position RMSE \end{minipage} & \begin{minipage}[c]{0.9cm}  Velocity RMSE \end{minipage} & \begin{minipage}[c]{0.9cm}  ENEES \end{minipage} & \begin{minipage}[c]{0.9cm}  Running Time (s) \end{minipage} & \begin{minipage}[c]{0.9cm}  Unique Particles \end{minipage} \\
@@ -477,6 +486,7 @@ MH-FFBP (30)   & 7.60 & 1.61 & 0.84 & 155.38 & 88.81 \\
 MH-FFBP (100)  & 7.59 & 1.60 & 0.84 & 507.58 & 96.82 \\
 \hline
 \end{tabular}
+\end{center}
 }
 \end{table}
 
@@ -485,20 +495,20 @@ MH-FFBP (100)  & 7.59 & 1.60 & 0.84 & 507.58 & 96.82 \\
 \caption{Smoother performance measures for noise covariance case 3. All results are averaged over 100 runs, with 500 time steps in each run.}
 \label{tab:case3_performance}
 {\scriptsize
-\centering
+\begin{center}
 \begin{tabular}{|c||c|c|c|c|c|}
 \hline
 Algorithm & \begin{minipage}[c]{0.9cm} Position RMSE \end{minipage} & \begin{minipage}[c]{0.9cm}  Velocity RMSE \end{minipage} & \begin{minipage}[c]{0.9cm}  ENEES \end{minipage} & \begin{minipage}[c]{0.9cm}  Running Time (s) \end{minipage} & \begin{minipage}[c]{0.9cm}  Unique Particles \end{minipage} \\
 \hline
 FS            & 7.41 & 2.15 & 0.98 & 0.00 & 3.97 \\
 D-FFBS        & 7.19 & 2.03 & 0.97 & 66.27 & 7.48 \\
-\hline         
+\hline
 MH-FFBS (1)   & 7.39 & 2.14 & 0.98 & 1.75 & 4.79 \\
 MH-FFBS (3)   & 7.36 & 2.12 & 0.98 & 3.75 & 5.33 \\
 MH-FFBS (10)  & 7.30 & 2.08 & 0.98 & 10.78 & 6.16 \\
 MH-FFBS (30)  & 7.24 & 2.05 & 0.97 & 30.83 & 6.88 \\
 MH-FFBS (100) & 7.20 & 2.04 & 0.97 & 101.02 & 7.38 \\
-\hline         
+\hline
 MH-FFBP (1)   & 7.22 & 2.05 & 0.97 & 9.12 & 12.57 \\
 MH-FFBP (3)   & 7.08 & 1.98 & 0.94 & 19.01 & 22.78 \\
 MH-FFBP (10)  & 6.95 & 1.92 & 0.92 & 53.64 & 44.15 \\
@@ -506,17 +516,18 @@ MH-FFBP (30)  & 6.87 & 1.88 & 0.90 & 152.42 & 70.71 \\
 MH-FFBP (100) & 6.84 & 1.86 & 0.88 & 498.38 & 91.35 \\
 \hline
 \end{tabular}
+\end{center}
 }
 \end{table}
 
 
 \begin{figure}[!t]
 \centering
-\subfloat[Case 1]{\includegraphics[width=0.9\columnwidth]{case1_smoother_comparison_posRMSE_time.pdf}}
+\subfloat[Case 1]{\includegraphics[width=0.45\columnwidth]{case1_smoother_comparison_posRMSE_time.pdf}}
 \\
-\subfloat[Case 2]{\includegraphics[width=0.9\columnwidth]{case2_smoother_comparison_posRMSE_time.pdf}}
+\subfloat[Case 2]{\includegraphics[width=0.45\columnwidth]{case2_smoother_comparison_posRMSE_time.pdf}}
 \\
-\subfloat[Case 3]{\includegraphics[width=0.9\columnwidth]{case3_smoother_comparison_posRMSE_time.pdf}}
+\subfloat[Case 3]{\includegraphics[width=0.45\columnwidth]{case3_smoother_comparison_posRMSE_time.pdf}}
 \caption{Position RMSEs and running times of various smoothing algorithms with different noise covariance cases.}%
 \label{fig:rmse_vs_time}%
 \end{figure}
