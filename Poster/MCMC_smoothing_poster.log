@@ -1,0 +1,404 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2012.1.9)  12 SEP 2012 17:32
+entering extended mode
+**MCMC_smoothing_poster.tex
+(D:\pb404\Research\MCMCSmoother\Poster\MCMC_smoothing_poster.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\sciposter\sciposter.cls"
+Document Class: sciposter 2006/05/30 v1.17 scientific poster class (MHFW, AMW)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lettrine\lettrine.sty"
+File: lettrine.sty 2007/08/08 v1.62 (Daniel Flipo)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\c@DefaultLines=\count87
+\DefaultFindent=\dimen103
+\DefaultNindent=\dimen104
+\DefaultSlope=\dimen105
+\L@lbox=\box26
+\L@tbox=\box27
+\c@L@lines=\count88
+\L@Pindent=\dimen106
+\L@Findent=\dimen107
+\L@Nindent=\dimen108
+\L@lraise=\dimen109
+\L@first=\dimen110
+\L@next=\dimen111
+\L@slope=\dimen112
+\L@height=\dimen113
+\LettrineWidth=\dimen114
+
+Loading lettrine.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lettrine\lettrine.cfg"))
+\papermargin=\skip43
+\tempsize=\skip44
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2010/09/14 v0.05b Graphics/color for pdfTeX
+\Gread@gobject=\count89
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\shadow.sty"
+Package: shadow 2003/02/19 v1.3 shadow boxes (M.O.)
+\txtwdth=\dimen115
+\sht=\dimen116
+\shw=\dimen117
+\shbox=\box28
+\sboxsep=\dimen118
+\sboxrule=\dimen119
+\sdim=\dimen120
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\a0poster\a0size.sty"
+File: a0size.sty 2004/01/31 v1.22b a0poster class (GK, MW)
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 229.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 229.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 229.
+\big@size=\dimen121
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\times.sty"
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\boxedminipage\boxedminipage.sty")
+\titlewidth=\skip45
+\logowidth=\skip46
+\parstartskip=\skip47
+\figtopskip=\skip48
+\figbotskip=\skip49
+\secskip=\skip50
+\titleskip=\skip51
+\secboxwidth=\skip52
+\c@subfig=\count90
+\c@algorithm=\count91
+\secrulewidth=\skip53
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip54
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen122
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen123
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count92
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count93
+\leftroot@=\count94
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count95
+\DOTSCASE@=\count96
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box29
+\strutbox@=\box30
+\big@size=\dimen124
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count97
+\c@MaxMatrixCols=\count98
+\dotsspace@=\muskip10
+\c@parentequation=\count99
+\dspbrk@lvl=\count100
+\tag@help=\toks16
+\row@=\count101
+\column@=\count102
+\maxfields@=\count103
+\andhelp@=\toks17
+\eqnshift@=\dimen125
+\alignsep@=\dimen126
+\tagshift@=\dimen127
+\tagwidth@=\dimen128
+\totwidth@=\dimen129
+\lineht@=\dimen130
+\@envbody=\toks18
+\multlinegap=\skip55
+\multlinetaggap=\skip56
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+\Gin@req@height=\dimen131
+\Gin@req@width=\dimen132
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\IEEEtrantools\IEEEtrantools.sty"
+Package: IEEEtrantools 2007/01/11 V1.2 by Michael Shell
+
+-- See the "IEEEtrantools_doc.txt" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/tools/
+\@IEEEtrantmpdimenA=\dimen133
+\@IEEEtrantmpdimenB=\dimen134
+\@IEEEtrantmpcountA=\count104
+\@IEEEtrantmpcountB=\count105
+\@IEEEtrantmptoksA=\toks20
+\IEEEnormaljot=\dimen135
+\IEEEilabelindentA=\dimen136
+\IEEEilabelindentB=\dimen137
+\IEEEilabelindent=\dimen138
+\IEEEelabelindent=\dimen139
+\IEEEdlabelindent=\dimen140
+\IEEElabelindent=\dimen141
+\IEEEiednormlabelsep=\dimen142
+\IEEEiedmathlabelsep=\dimen143
+\IEEEiedtopsep=\skip57
+\c@IEEEsubequation=\count106
+\@IEEEeqnnumcols=\count107
+\@IEEEeqncolcnt=\count108
+\IEEEPARstartletwidth=\dimen144
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2008/12/05 v1.6h multicolumn formatting (FMi)
+\c@tracingmulticols=\count109
+\mult@box=\box31
+\multicol@leftmargin=\dimen145
+\c@unbalance=\count110
+\c@collectmore=\count111
+\doublecol@number=\count112
+\multicoltolerance=\count113
+\multicolpretolerance=\count114
+\full@width=\dimen146
+\page@free=\dimen147
+\premulticols=\dimen148
+\postmulticols=\dimen149
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
+\partial@page=\box32
+\last@line=\box33
+\mult@rightbox=\box34
+\mult@grightbox=\box35
+\mult@gfirstbox=\box36
+\mult@firstbox=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\c@columnbadness=\count115
+\c@finalcolumnbadness=\count116
+\last@try=\dimen150
+\multicolovershoot=\dimen151
+\multicolundershoot=\dimen152
+\mult@nat@firstbox=\box55
+\colbreak@box=\box56
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
+Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
+
+Package: `setspace' 6.7 <2000/12/01>
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithms\algorithmic.sty"
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count117
+\c@ALC@line=\count118
+\c@ALC@rem=\count119
+\c@ALC@depth=\count120
+\ALC@tlm=\skip60
+\algorithmicindent=\skip61
+)
+(D:\pb404\Research\MCMCSmoother\Poster\MCMC_smoothing_poster.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 24.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count121
+\scratchdimen=\dimen153
+\scratchbox=\box57
+\nofMPsegments=\count122
+\nofMParguments=\count123
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count124
+\MPscratchDim=\dimen154
+\MPnumerator=\count125
+\everyMPtoPDFconversion=\toks22
+)
+-- Paper type set to a0.
+\GPT@outputbox=\box58
+<CUnibig.pdf, id=1, 329.23pt x 68.255pt>
+File: CUnibig.pdf Graphic file (type pdf)
+ <use CUnibig.pdf>
+Overfull \hbox (252.27077pt too wide) in paragraph at lines 26--26
+ [] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <51.6> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 26.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <43> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 26.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 26.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 26.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omspcr.fd"
+File: omspcr.fd 
+)
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <35.83> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+
+Overfull \hbox (10.54907pt too wide) in paragraph at lines 26--28
+[]$[]$  $[]$$[]$
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 29.
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <24.88> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 29.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 55.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <24.88> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <29.86> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 105.
+<POSTER_case1_trajectory.pdf, id=2, 243.91125pt x 252.945pt>
+File: POSTER_case1_trajectory.pdf Graphic file (type pdf)
+
+<use POSTER_case1_trajectory.pdf>
+<POSTER_case2_trajectory.pdf, id=3, 243.91125pt x 252.945pt>
+File: POSTER_case2_trajectory.pdf Graphic file (type pdf)
+
+<use POSTER_case2_trajectory.pdf>
+<POSTER_case1_smoother_comparison_posRMSE_time.pdf, id=4, 246.9225pt x 192.72pt
+>
+File: POSTER_case1_smoother_comparison_posRMSE_time.pdf Graphic file (type pdf)
+
+ <use POSTER_case1_smoother_comparison_posRMSE_time.pdf>
+<POSTER_case2_smoother_comparison_posRMSE_time.pdf, id=5, 246.9225pt x 192.72pt
+>
+File: POSTER_case2_smoother_comparison_posRMSE_time.pdf Graphic file (type pdf)
+
+ <use POSTER_case2_smoother_comparison_posRMSE_time.pdf>
+(D:\pb404\Research\MCMCSmoother\Poster\MCMC_smoothing_poster.bbl
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <20.74> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 26.
+) [1
+
+{C:/Users/pb404/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/pb404/Re
+search/MCMCSmoother/Poster/CUnibig.pdf> <D:/pb404/Research/MCMCSmoother/Poster/
+POSTER_case1_trajectory.pdf> <D:/pb404/Research/MCMCSmoother/Poster/POSTER_case
+2_trajectory.pdf> <D:/pb404/Research/MCMCSmoother/Poster/POSTER_case1_smoother_
+comparison_posRMSE_time.pdf> <D:/pb404/Research/MCMCSmoother/Poster/POSTER_case
+2_smoother_comparison_posRMSE_time.pdf>]
+(D:\pb404\Research\MCMCSmoother\Poster\MCMC_smoothing_poster.aux) ) 
+Here is how much of TeX's memory you used:
+ 2677 strings out of 494019
+ 40632 string characters out of 3143883
+ 156205 words of memory out of 3000000
+ 5924 multiletter control sequences out of 15000+200000
+ 28054 words of font info for 56 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 30i,12n,24p,1079b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/he
+lvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/u
+hvro8a.pfb>
+Output written on MCMC_smoothing_poster.pdf (1 page, 188232 bytes).
+PDF statistics:
+ 82 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+

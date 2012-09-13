@@ -1,0 +1,141 @@
+\documentclass[landscape]{sciposter}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{IEEEtrantools}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{algorithmic}
+
+\onehalfspacing
+
+\title{Metropolis-Hastings Implementations of the Forward-Filtering-Backward-Sampling \\ Algorithm for Particle Smoothing}
+
+\author{P. Bunch and S. Godsill}
+\institute{Department of Engineering, University of Cambridge, Trumpington Street, Cambridge, CB2 1PZ, UK}
+\email{\{pb404,sjg\}@eng.cam.ac.uk}
+
+\renewcommand{\titlesize}{\huge}
+
+\begin{document}
+
+\maketitle
+\begin{multicols}{4}
+
+\begin{abstract}
+The conventional forward-filtering-backward-sampling algorithm for particle smoothing generates samples from the joint smoothing distribution by sequentially sampling backwards from the forward filter approximations. This algorithm has a computational complexity quadratic in the number of particles, which is often restrictive. In addition, the support of the smoothing distribution is restricted to the values which appear in the filtering approximation. Here a Metropolis-Hastings sampling procedure is used to improve the efficiency of the forward-filtering-backward-sampling algorithm, achieving comparable error performance but with a lower execution time. In addition, an algorithm for approximating the joint smoothing distribution without limited support is presented, which achieves simultaneous improvements in both execution time and error. These algorithms also provide a greater degree of flexibility over existing methods, allowing a trade-off between execution time and estimation error, controlled by the length of the Markov chains.
+\end{abstract}
+
+\columnbreak
+
+\section*{Introduction}
+
+Consider a standard hidden Markov model for Bayesian inference,
+%
+\begin{IEEEeqnarray*}{rCl}
+x_{k} & \sim & p(x_{k}|x_{k-1}) \\
+y_{k} & \sim & p(y_{k}|x_{k})      . \\
+\end{IEEEeqnarray*}
+
+Commonly of interest are the problems of filtering and smoothing. Filtering is the inference of $p(x_k|y_{1:k})$. There are two related smoothing tasks:
+\begin{itemize}
+  \item Joint smoothing -- inference of $p(x_{1:K}|y_{1:K})$ (where $K$ is the number of time steps)
+  \item Marginal smoothing -- inference of $p(x_{k}|y_{1:K})$ for each $k$.
+\end{itemize}
+Here we are concerned with joint smoothing.
+
+For non-linear, non-Gaussian models, numerical approximations are needed. Particle methods represent posterior distributions with a set of samples \cite{Cappe2007,Doucet2009}.
+\begin{itemize}
+  \item Filter: $\hat{p}(x_{k}|y_{1:k}) = \sum_i w_k^{(i)} \delta_{x_k^{(i)}}(x_k)$.
+  \item Smoother: $\hat{p}(x_{1:K}|y_{1:K}) = \sum_i w_K^{(i)} \delta_{x_{1:K}^{(i)}}(x_{1:K})$.
+\end{itemize}
+
+
+
+\section*{Forward-Filtering-Backward-Sampling}
+
+The forward-filtering-backward-sampling (FFBS) algorithm \cite{Godsill2004} draws particles from the joint smoothing distribution by sequentially sampling a set of backwards conditional distributions,
+
+\begin{IEEEeqnarray*}{rCl}
+p(x_{1:K}|y_{1:K}) & = & p(x_K|y_{1:K}) \prod_{k=1}^{K-1} p(x_k|x_{k+1}, y_{1:K})     . \\
+\end{IEEEeqnarray*}
+
+The conditional factors may be expressed as,
+
+\begin{IEEEeqnarray*}{rCl}
+p(x_k|\tilde{x}_{k+1}, y_{1:K}) & =       & p(x_k|\tilde{x}_{k+1}, y_{1:k})   \\
+                                & \propto & p(\tilde{x}_{k+1}|x_k) p(x_k|y_{1:k})   . \\
+\end{IEEEeqnarray*}
+
+Using the filter approximations, the backwards conditional distributions are approximated as,
+
+\begin{IEEEeqnarray*}{rCl}
+\hat{p}(x_k|\tilde{x}_{k+1}, y_{1:K}) & = & \sum_i  \tilde{w}_k^{(i)} \delta_{x_{k}^{(i)}}(x_{k})    \\
+\tilde{w}_k^{(i)} & \propto & w_k^{(i)} p(\tilde{x}_{k+1}|x_k^{(i)})      . \\
+\end{IEEEeqnarray*}
+
+This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N_F$ filter particles and sampling the resulting multinomial distribution. The whole procedure is repeated $N_S$ times, once for each smoothing particle.
+
+\subsection*{Deficiencies}
+
+The basic FFBS algorithm suffers from two drawbacks:
+\begin{itemize}
+  \item The algorithmic complexity is $\mathcal{O}(N_F \times N_S)$ which is restrictive.
+  \item The support for the smoothing approximation is limited to the values appearing in the filtering particles.
+\end{itemize}
+
+We propose modifications to address each of these issues.
+
+
+
+\section*{A Metropolis-Hastings implementation}
+
+The bottleneck in the FFBS algorithm is the calculation of the $N_F$ backwards weights, $\{\tilde{w}_k^{(i)}\}$, for every sampling step, in order to sample from $\hat{p}(x_k|\tilde{x}_{k+1}, y_{1:K})$. Instead, we can sample this distribution using Metropolis-Hastings.
+
+\begin{itemize}
+  \item The filter weights are used to propose particles from $\hat{p}(x_k | y_{1:k})$.
+  \item The new state, $x_k^*$, replaces the old state, $x_k$ with acceptance probability,
+\end{itemize}
+%
+\begin{IEEEeqnarray*}{rCl}
+\alpha &=& \min \Bigg[ 1, \frac{ \hat{p}(x_{k}^{*}|\tilde{x}_{k+1}, y_{1:K}) \hat{p}(x_{k}|y_{1:k}) }{ \hat{p}(x_{k}|\tilde{x}_{k+1}, y_{1:K}) \hat{p}(x_{k}^{*}|y_{1:k}) } \Bigg] \\
+       &=& \min \Bigg[1, \frac{ p(\tilde{x}_{k+1}|x_k^{*}) }{ p(\tilde{x}_{k+1}|x_k) }  \Bigg]     . \\
+\end{IEEEeqnarray*}
+
+\subsection*{Initialisation}
+
+\begin{itemize}
+  \item An initial value is required to start the chain.
+  \item Instead of sampling the state, $x_k$, at each step, sample the entire history, $x_{1:k}$.
+  \item No additional states need be stored, only index of the $(k-1)$-time particle from which each $k$-time particle originates.
+\end{itemize}
+
+\subsection*{Effects}
+
+\begin{itemize}
+  \item Computational complexity reduced to $\mathcal{O}(M \times N_S)$, where $M$ is the (average) length of Markov chains.
+  \item 
+\end{itemize}
+
+
+
+
+
+
+
+The MH implementation. Expectations of performance. Comparison with rejection sampling.
+
+\section*{Improving the Support}
+
+The newly-proposing version for improved support.
+
+\section*{Demonstrations}
+
+Two examples of output on tracking. Graphs of performance against running time.
+
+
+
+\end{multicols}
+
+\end{document}
