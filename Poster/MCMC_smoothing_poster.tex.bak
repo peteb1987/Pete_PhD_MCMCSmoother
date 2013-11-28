@@ -8,14 +8,16 @@
 \usepackage{algorithmic}
 
 \onehalfspacing
-\multicoltolerance = 1000
-\raggedcolumns
+%\multicoltolerance = 1000
+%\raggedcolumns
 
 \title{Metropolis-Hastings Implementations of the Forward-Filtering-Backward-Sampling \\ Algorithm for Particle Smoothing}
 
 \author{P. Bunch and S. Godsill}
 \institute{Department of Engineering, University of Cambridge, Trumpington Street, Cambridge, CB2 1PZ, UK}
 \email{\{pb404,sjg\}@eng.cam.ac.uk}
+
+\leftlogo[2]{CUnibig.pdf}
 
 \renewcommand{\titlesize}{\huge}
 
@@ -78,7 +80,7 @@ where $\tilde{x}_{k+1}$ is the future state already sampled. Using the filter ap
 \tilde{w}_k^{(i)} & \propto & w_k^{(i)} p(\tilde{x}_{k+1}|x_k^{(i)})      .
 \end{IEEEeqnarray*}
 
-This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N_F$ filter particles and sampling the resulting multinomial distribution. The whole procedure is repeated $N_S$ times, once for each smoothing particle.
+This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N_F$ filter particles and sampling the resulting categorical distribution. The whole procedure is repeated $N_S$ times, once for each smoothing particle.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -101,7 +103,7 @@ This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N
 
 
 \subsection*{Deficiencies}
-
+%
 The basic FFBS algorithm suffers from two drawbacks:
 \begin{itemize}
   \item The algorithmic complexity is $\mathcal{O}(N_F \times N_S)$ which is restrictive.
@@ -125,8 +127,10 @@ The FFBS bottleneck is the calculation of the $N_F$ backwards weights for every 
 
 
 
-\subsection*{Initialisation}
+\columnbreak
 
+\subsection*{Initialisation}
+%
 \begin{itemize}
   \item An initial value is required to start the chain.
   \item Instead of sampling the state, $x_k$, at each step, sample the entire history, $x_{1:k}$.
@@ -137,7 +141,7 @@ The FFBS bottleneck is the calculation of the $N_F$ backwards weights for every 
 
 
 \subsection*{Effects}
-
+%
 \begin{itemize}
   \item Computational complexity reduced to $\mathcal{O}(M \times N_S)$, where $M$ is the  length of Markov chains.
   \item $M = 0$ reproduces particles from the filter smoother. $M \rightarrow \infty$ draws an independent sample from the distribution.
@@ -167,7 +171,7 @@ The FFBS bottleneck is the calculation of the $N_F$ backwards weights for every 
 
 
 \subsection*{Alternatives}
-
+%
 Rejection sampling \cite{Douc2011} can achieve a similar complexity reduction.
 \begin{itemize}
   \item Rejection sampling can be very slow if rejection rates are high, e.g. when state dimension high.
@@ -181,16 +185,16 @@ Rejection sampling \cite{Douc2011} can achieve a similar complexity reduction.
 
 Modify the MH proposal to use,
 %
-\begin{IEEEeqnarray*}{c}
-\hat{p}(x_{1:k-1}|y_{1:k-1}) q(x_k|x_{k-1}, \tilde{x}_{k+1}, y_k)     .
+\begin{IEEEeqnarray*}{rCl}
+\{ x_{1:k-1}^{(i^*)}, x_k^*  \} &\sim& \hat{p}(x_{1:k-1}|y_{1:k-1}) q(x_k|x_{k-1}, \tilde{x}_{k+1}, y_k)     .
 \end{IEEEeqnarray*}
 
-Support of $x_k$ is no longer restricted to those values appearing in the filter approximation. This is inspired by the method used in \cite{Fearnhead2010} for two-filter marginal smoothing.
+Support of $x_k$ is no longer restricted to those values appearing in the filter approximation (although support of $x_{1:k-1}$ is). This is inspired by the method used in \cite{Fearnhead2010} for two-filter marginal smoothing.
 
 Acceptance probability is now,
 %
 \begin{IEEEeqnarray*}{rCl}
-\alpha &=& \min \Bigg[ 1, \frac{  p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{*}) p(y_k|x_k^{*}) q(x_k|x_{k-1},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k) p(x_k|x_{k-1}) p(y_k|x_k) q(x_k^{*}|x_{k-1}^{*},\tilde{x}_{k+1},y_k) }  \Bigg]      .
+\alpha &=& \min \Bigg[ 1, \frac{  p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{(i^*)}) p(y_k|x_k^{*}) q(x_k|x_{k-1},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k) p(x_k|x_{k-1}) p(y_k|x_k) q(x_k^{*}|x_{k-1}^{(i^*)},\tilde{x}_{k+1},y_k) }  \Bigg]      .
 \end{IEEEeqnarray*}
 
 %\begin{algorithm}
@@ -215,7 +219,7 @@ Acceptance probability is now,
 
 
 
-\columnbreak
+%\columnbreak
 
 \section*{Demonstrations}
 
@@ -252,4 +256,4 @@ New algorithms tested on a simulated tracking problem with near constant velocit
 
 \end{multicols}
 
-\end{document}
+\end{document} 

@@ -1,106 +1,156 @@
-function [ pts_array, wts_array, filter_pts ] = particle_filter( init_pts, times, observs, h_ppsl, h_trans, h_obs, ess_thresh )
-%PARTICLE_FILTER Run a particle filter
-%
-% *** Input ***
-% init_pts      - Cell array of particles defining prior (see below)
-% times         - Row vector of observation times
-% observs       - Matrix of observations, observs(:,k) is the kth observation
-% h_ppsl        - Function handle to the proposal function.
-% h_trans       - Function handle to the transition likelihood function.
-% h_obs         - Function handle to the observation likelihood function.
-%
-% *** Output ***
-% pts_array     - Cell array of particle cell arrays, the filter output at each observation time
-% wts_array     - Cell array of corresponding weight column vectors
-% filter_pts    - Cell array of equal-weight, current filter points (i.e. no Kitigawa smoothing)
-%
-% Particle cell arrays have the following structure: pts{ii}(:,k) is the
-% state of the iith particle at the kth time.
-%
-% All weights and probabilities are log-ed.
-%
+function [ pf, diagnostics ] = particle_filter( display, algo, model, fh, observ, flag_ppsl_type, true_state )
+%particle_filter
 
-fprintf(1, '\n\n*** Running particle filter. ***\n');
+if display.text
+    fprintf(1, 'Running particle filter, type %u.\n', flag_ppsl_type);
+end
 
-% Initialise constants
-Np = length(init_pts);
-K = size(times, 2);
-d = size(init_pts{1}, 1);
+% Initialise diagnostics structure
+diagnostics = repmat(struct('rt', [], 'ess', [], 'se', []), 1, model.K);
 
-% Initialise arrays
-pts_array = cell(K,1);
-wts_array = cell(K,1);
-filter_pts = repmat({zeros(d,K)}, Np, 1);
-wts = log(ones(Np,1)/Np);
-last_pts = init_pts;
+% Initialise particle filter structure
+pf = repmat(struct('state', [], 'ancestor', [], 'weight', []), 1, model.K);
 
-% Loop through time
-for kk = 1:K
+%%% Time loop %%%
+for kk = 1:model.K
     
-    fprintf(1, 'Now processing frame %u.\n', kk);
-    
-    % Create a new particle array
-    pts = repmat({zeros(d,kk)}, Np, 1);
-    
-    % Find time increment
-    t = times(kk);
-    if kk == 1
-        dt = t;
-    else
-        dt = times(kk) - times(kk-1);
+    if display.text
+        fprintf(1, '   Time step %u.\n', kk);
     end
     
-    % Loop through particles
-    for ii = 1:Np
-        
-        % Copy state trajectory from old particle
-        pts{ii} = last_pts{ii}(:,1:kk-1);
-        
-        % Get previous state
-        if kk == 1
-            last_x = init_pts{ii}(:,1);
-        else
-            last_x = pts{ii}(:,kk-1);
-        end
-        
-        % Propose a new value for the particle
-        [x, ppsl_prb] = feval(h_ppsl, last_x, observs(:,kk), dt, h_trans, h_obs);
-        
-        % Store new value
-        pts{ii}(:,kk) = x;
-        
-        % Evaluate probabilities
-        [~, trans_prb] = feval(h_trans, dt, last_x, x);
-        [~, obs_prb] = feval(h_obs, x, observs(:,kk));
-        
-        % Update weight
-        wts(ii) = wts(ii) + trans_prb + obs_prb - ppsl_prb;
-        
+    % Start timer
+    tic;
+    
+    %%% Particle selection %%% - CUSTOMISE THIS IF NEEDED
+    if kk > 1
+        aux_weight = pf(kk-1).weight;
+        pf(kk).ancestor = sample_weights(aux_weight, algo.N, 2);
+    end
+    %%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % Initialise state and weight arrays
+    pf(kk).state = zeros(model.ds, algo.N);
+    pf(kk).weight = zeros(1, algo.N);
+    step_count = zeros(1, algo.N);
+    
+    switch flag_ppsl_type
+        case {1, 2, 3, 4}
+            %%% Ordinary particle filters %%%
+            
+            % Particle loop
+            for ii = 1:algo.N
+                
+                % Ancestory
+                if kk > 1
+                    prev_state = pf(kk-1).state(:,pf(kk).ancestor(ii));
+                    prior_weight = pf(kk-1).weight(pf(kk).ancestor(ii)) - aux_weight(pf(kk).ancestor(ii));
+                else
+                    prior_weight = 0;
+                end
+                
+                % Sample from importance density
+                switch flag_ppsl_type
+                    case 1
+                        %%% Bootstrap %%%
+                        
+                        if kk > 1
+                            [state, ~] = feval(fh.transition, model, prev_state);
+                        else
+                            [state, ~] = feval(fh.stateprior, model);
+                        end
+                        
+                        % Density
+                        [~, lhood_prob] = feval(fh.observation, model, state, observ(:,kk));
+                        
+                        % Weight
+                        weight = prior_weight + lhood_prob;
+                        
+                    case {2, 3, 4}
+                        %%% Other importance densities %%%
+                        
+                        switch flag_ppsl_type
+                            
+                            case 2
+                                %%% EKF approx to OID %%%
+                                if kk > 1
+                                    [state, ppsl_prob] = feval(fh.ekfproposal, model, prev_state, observ(:,kk));
+                                else
+                                    [state, ppsl_prob] = feval(fh.ekfproposal, model, [], observ(:,kk));
+                                end
+                                
+                            case 3
+                                %%% UKF approx to OID %%%
+                                if kk > 1
+                                    [state, ppsl_prob] = feval(fh.ukfproposal, model, prev_state, observ(:,kk));
+                                else
+                                    [state, ppsl_prob] = feval(fh.ukfproposal, model, [], observ(:,kk));
+                                end
+                                
+                            case 4
+                                %%% Linearised OID %%%
+                                if kk > 1
+                                    [state, ppsl_prob] = feval(fh.linearisedoidproposal, model, prev_state, observ(:,kk));
+                                else
+                                    [state, ppsl_prob] = feval(fh.linearisedoidproposal, model, [], observ(:,kk));
+                                end
+                                
+                        end
+                        
+                        % Densities
+                        if kk > 1
+                            [~, trans_prob] = feval(fh.transition, model, prev_state, state);
+                        else
+                            [~, trans_prob] = feval(fh.stateprior, model, state);
+                        end
+                        [~, lhood_prob] = feval(fh.observation, model, state, observ(:,kk));
+                        
+                        % Weight
+                        weight = prior_weight + lhood_prob + trans_prob - ppsl_prob;
+                        
+                        if isinf(ppsl_prob)
+                            weight = -inf;
+                        end
+                        
+                end
+                
+                assert(isreal(weight));
+                assert(~isnan(weight));
+                
+                % Store new state and weight
+                pf(kk).state(:,ii) = state;
+                pf(kk).weight(ii) = weight;
+                
+            end
+            
+        otherwise
+            error('Invalid choice of proposal type');
+            
     end
     
-    % Normalise weights
-    wts = wts - max(wts);
-    assert(~any(isnan(wts)), 'Invalid set of weights');
-    lin_wts = exp(wts); lin_wts = lin_wts/sum(lin_wts);
-    wts = log(lin_wts);
+    % Make sure we have real weights
+    assert(all(isreal(pf(kk).weight)));
     
-    % Store particles and weights
-    pts_array{kk} = pts;
-    wts_array{kk} = wts;
-    
-    % Resample
-    parents = systematic_resample(wts);
-    resamp_pts = pts(parents);
-    if ESS(wts) < ess_thresh*Np
-        pts = resamp_pts;
-        wts = log(ones(Np,1)/Np);
-        fprintf(1, '     Resampled in frame %u.\n', kk);
-    end
-    for ii = 1:Np
-        filter_pts{ii}(:,kk) = resamp_pts{ii}(:,kk);
+    % Handle the case where all the particles have weight 0
+    if all(isinf(pf(kk).weight))
+        pf(kk).weight = zeros(size(pf(kk).weight));
     end
     
-    last_pts = pts;
+    % Particle mean and variance
+    norm_weight = exp(normalise_weights(pf(kk).weight));
+    pf(kk).mn = pf(kk).state*norm_weight';
+    err = bsxfun(@minus, pf(kk).state, pf(kk).mn);
+    pf(kk).vr = err*diag(norm_weight)*err';
+    
+    % Diagnostics
+    diagnostics(kk).rt = toc;
+    diagnostics(kk).ess = calc_ESS(pf(kk).weight);
+    diagnostics(kk).se = true_state(:,kk) - pf(kk).mn;
+    diagnostics(kk).step_count = step_count;
+    
+    if display.text
+        fprintf(1, '      - Took %fs.\n', diagnostics(kk).rt);
+        fprintf(1, '      - ESS of %f.\n', diagnostics(kk).ess);
+    end
     
 end
 

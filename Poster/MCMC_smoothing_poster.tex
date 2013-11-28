@@ -27,14 +27,27 @@
 \begin{multicols}{4}
 
 \begin{abstract}
-The conventional forward-filtering-backward-sampling algorithm for particle smoothing generates samples from the joint smoothing distribution by sequentially sampling backwards from the forward filter approximations. This algorithm has a computational complexity quadratic in the number of particles, which is often restrictive. In addition, the support of the smoothing distribution is restricted to the values which appear in the filtering approximation. Here a Metropolis-Hastings sampling procedure is used to improve the efficiency of the forward-filtering-backward-sampling algorithm, achieving comparable error performance but with a lower execution time. In addition, an algorithm for approximating the joint smoothing distribution without limited support is presented, which achieves simultaneous improvements in both execution time and error. These algorithms also provide a greater degree of flexibility over existing methods, allowing a trade-off between execution time and estimation error, controlled by the length of the Markov chains.
+The conventional forward-filtering-backward-sampling algorithm for particle smoothing generates samples from the joint smoothing distribution by sequentially sampling backwards from the forward filter approximations. This algorithm has a computational complexity quadratic in the number of particles, which is often restrictive. In addition, the support of the smoothing distribution is restricted to the values which appear in the filtering approximation. Here a Metropolis-Hastings sampling procedure is used to improve the efficiency of the forward-filtering-backward-sampling algorithm. In addition, an algorithm for approximating the joint smoothing distribution without limited support is presented, which achieves simultaneous improvements in both execution time and error. These algorithms also provide a greater degree of flexibility over existing methods, allowing a trade-off between execution time and estimation error, controlled by the length of the Markov chains.
 \end{abstract}
 
 %\columnbreak
 
+\begingroup
+{\small
+\renewcommand{\section}[2]{}%
+To be published as:
+\begin{thebibliography}
+\newblock P.~Bunch and S.~Godsill.
+\newblock ``Improved particle approximations to the joint smoothing distribution using Markov chain Monte Carlo.''
+\newblock {\em IEEE Transactions on Signal Processing}.
+\end{thebibliography}
+}
+\endgroup
+
+
 \section*{Introduction}
 
-Consider a standard hidden Markov model for Bayesian inference,
+Consider a hidden Markov model for Bayesian inference,
 %
 \begin{IEEEeqnarray*}{rCl}
 x_{k} & \sim & p(x_{k}|x_{k-1}) \\
@@ -50,7 +63,8 @@ We address the task of joint smoothing --- inference of $p(x_{1:K}|y_{1:K})$ (wh
 %\end{itemize}
 %Here we are concerned with joint smoothing.
 
-For non-linear, non-Gaussian models, numerical approximations are needed. Particle methods represent posterior distributions with a set of samples \cite{Doucet2009}.
+%For non-linear, non-Gaussian models, numerical approximations are needed. Particle methods represent posterior distributions with a set of samples \cite{Doucet2009}.
+For non-linear, non-Gaussian models, particle methods may be used to represent posterior distributions with a set of samples \cite{Doucet2009}.
 \begin{itemize}
   \item Filter: $\hat{p}(x_{k}|y_{1:k}) = \sum_i w_k^{(i)} \delta_{x_k^{(i)}}(x_k)$.
   \item Smoother: $\hat{p}(x_{1:K}|y_{1:K}) = \sum_i w_K^{(i)} \delta_{x_{1:K}^{(i)}}(x_{1:K})$.
@@ -80,7 +94,7 @@ where $\tilde{x}_{k+1}$ is the future state already sampled. Using the filter ap
 \tilde{w}_k^{(i)} & \propto & w_k^{(i)} p(\tilde{x}_{k+1}|x_k^{(i)})      .
 \end{IEEEeqnarray*}
 
-This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N_F$ filter particles and sampling the resulting multinomial distribution. The whole procedure is repeated $N_S$ times, once for each smoothing particle.
+This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N_F$ filter particles and sampling the resulting categorical distribution. The whole procedure is repeated $N_S$ times, once for each smoothing particle.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -89,7 +103,8 @@ This may be sampled easily by calculating $\tilde{w}_k^{(i)}$ for each of the $N
 	\FOR{$i = 1$ \TO $N_S$}
 		\STATE Sample $\tilde{x}_{K}^{(i)} \sim \hat{p}(x_K|y_{1:K})$.
 		\FOR{$k = K-1$ \TO $1$}
-            \STATE Sample $\tilde{x}_{k}^{(i)} \sim p(x_k|\tilde{x}_{k+1}, y_{1:K})$. This is the critical step. See text for various methods.
+            \STATE Sample $\tilde{x}_{k}^{(i)} \sim p(x_k|\tilde{x}_{k+1}, y_{1:K})$. \\
+            \emph{This is the critical step. See text for various methods.}
 %			\FOR{$j = 1$ \TO $N_F$}
 %				\STATE Calculate weight $\tilde{w}_k^{(j)} = w_k^{(j)} p(\tilde{x}_{k+1}|x_k^{(j)})$.
 %			\ENDFOR
@@ -185,16 +200,16 @@ Rejection sampling \cite{Douc2011} can achieve a similar complexity reduction.
 
 Modify the MH proposal to use,
 %
-\begin{IEEEeqnarray*}{c}
-\hat{p}(x_{1:k-1}|y_{1:k-1}) q(x_k|x_{k-1}, \tilde{x}_{k+1}, y_k)     .
+\begin{IEEEeqnarray*}{rCl}
+\{ x_{1:k-1}^{(i^*)}, x_k^*  \} &\sim& \hat{p}(x_{1:k-1}|y_{1:k-1}) q(x_k|x_{k-1}, \tilde{x}_{k+1}, y_k)     .
 \end{IEEEeqnarray*}
 
-Support of $x_k$ is no longer restricted to those values appearing in the filter approximation. This is inspired by the method used in \cite{Fearnhead2010} for two-filter marginal smoothing.
+Support of $x_k$ is no longer restricted to those values appearing in the filter approximation (although support of $x_{1:k-1}$ is). This is inspired by the method used in \cite{Fearnhead2010} for two-filter marginal smoothing.
 
 Acceptance probability is now,
 %
 \begin{IEEEeqnarray*}{rCl}
-\alpha &=& \min \Bigg[ 1, \frac{  p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{*}) p(y_k|x_k^{*}) q(x_k|x_{k-1},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k) p(x_k|x_{k-1}) p(y_k|x_k) q(x_k^{*}|x_{k-1}^{*},\tilde{x}_{k+1},y_k) }  \Bigg]      .
+\alpha &=& \min \Bigg[ 1, \frac{  p(\tilde{x}_{k+1}|x_k^{*}) p(x_k^{*}|x_{k-1}^{(i^*)}) p(y_k|x_k^{*}) q(x_k|x_{k-1},\tilde{x}_{k+1},y_k) }{ p(\tilde{x}_{k+1}|x_k) p(x_k|x_{k-1}) p(y_k|x_k) q(x_k^{*}|x_{k-1}^{(i^*)},\tilde{x}_{k+1},y_k) }  \Bigg]      .
 \end{IEEEeqnarray*}
 
 %\begin{algorithm}
@@ -256,4 +271,4 @@ New algorithms tested on a simulated tracking problem with near constant velocit
 
 \end{multicols}
 
-\end{document}
+\end{document} 
