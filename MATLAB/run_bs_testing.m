@@ -8,13 +8,24 @@ if ~exist('test', 'var') || ~isfield(test,'flag_batch') || (~test.flag_batch)
     dbstop if error
     %     dbstop if warning
     
+    % Function handles for the model
+    addpath('tracking3');
+    fh.setmodel = @tracking_setmodel;
+    fh.setalgo = @tracking_setalgo;
+    fh.generatedata = @tracking_generatedata;
+    fh.transition = @tracking_transition;
+    fh.observation = @tracking_observation;
+    fh.stateprior = @tracking_stateprior;
+    fh.ekfproposal = @tracking_ekfproposal;
+    fh.ukfproposal = @tracking_ukfproposal;
+    
     % Set flag to non-batch
     test.flag_batch = false;
     
     %%% SETTINGS %%%
     
     % DEFINE RANDOM SEED
-    rand_seed = 0;
+    rand_seed = 1;
     
     % Set display options
     display.text = true;
@@ -22,30 +33,19 @@ if ~exist('test', 'var') || ~isfield(test,'flag_batch') || (~test.flag_batch)
     display.plot_after = true;
     
     % Tests to run
-    test.samp_types = [0 1 2 3 4];
-    test.chain_lengths = [NaN NaN 10 10 10];
+    test.samp_types = [0 1 3 4];
+    test.chain_lengths = [NaN NaN 32 10];
+    
+    % Set model parameters
+    [model] = feval(fh.setmodel, test);
     
 end
 
 %% Setup
 fprintf('   Random seed: %u.\n', rand_seed);
 
-% Function handles for the model
-addpath('tracking2');
-fh.setmodel = @tracking_setmodel;
-fh.setalgo = @tracking_setalgo;
-fh.generatedata = @tracking_generatedata;
-fh.transition = @tracking_transition;
-fh.observation = @tracking_observation;
-fh.stateprior = @tracking_stateprior;
-fh.ekfproposal = @tracking_ekfproposal;
-fh.ukfproposal = @tracking_ukfproposal;
-
 % Set random seed
 rng(rand_seed);
-
-% Set model parameters
-[model] = feval(fh.setmodel, test);
 
 % Set algorithm parameters
 [algo] = feval(fh.setalgo, test);
