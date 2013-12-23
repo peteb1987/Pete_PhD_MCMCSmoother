@@ -11,7 +11,7 @@ clup
 % Get environment variable specifying test number
 sys_num = str2double(getenv('SGE_TASK_ID'));
 if isnan(sys_num)
-    sys_num = 0;
+    sys_num = 1;
 end
 
 fprintf(1, 'System count number: %u.\n', sys_num);
@@ -65,6 +65,7 @@ switch test_case
     otherwise
         error('Invalid test case');
 end
+model.R = diag([sigtheta sigphi sigr]);
 
 % Run the script
 run_bs_testing;

@@ -15,9 +15,4 @@ y_mn(2) = atan2(x(3), hoz_range);
 range = sqrt( x(1)^2 + x(2)^2 + x(3)^2 );
 y_mn(3) = range;
 
-% Range Rate
-r = x(1:3);
-v = x(4:6);
-y_mn(4) = dot(r,v)/range;
-
 end

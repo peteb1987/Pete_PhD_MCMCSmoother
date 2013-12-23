@@ -8,14 +8,14 @@ function model = tracking_setmodel(test)
 %%%%%%%%%%%%%%%%
 
 % General things
-model.K = 250;                  % Number of time points
+model.K = 50;                  % Number of time points
 model.ds = 4;                   % Dimension of the state
 model.do = 2;                   % Dimension of the observations
 
 % Parameters
 sigx = 1;
-sigtheta = ( 5*(pi/180) )^2; % Bearing covariance (0.25/5)
-sigr     = 100;                 % Range covariance (0.1/100)
+sigtheta = ( 0.1*(pi/180) )^2; % Bearing covariance (0.25/5)
+sigr     = 0.01;                 % Range covariance (0.1/100)
 
 % Matrixes
 T = 1;                          % Sampling period

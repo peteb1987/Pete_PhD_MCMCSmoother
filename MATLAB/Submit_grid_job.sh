@@ -1,2 +1,2 @@
 #!/bin/bash
-qsub -m be -t 1-100 ge_script.sh
+qsub -l lr=1 -m be -t 1-300 ge_script.sh
